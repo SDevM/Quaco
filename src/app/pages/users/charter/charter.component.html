@@ -1,1 +1,121 @@
-<p>charter works!</p>
+<nav
+	class="navbar navbar-light navbar-expand-lg navigation-clean-button"
+	style="background: rgba(255, 255, 255, 0)">
+	<div class="container">
+		<a
+			class="navbar-brand"
+			routerLink="/home"
+			style="font-size: 30px; color: rgb(255, 255, 255)"
+			>QUACO</a
+		><button
+			data-bs-toggle="collapse"
+			class="navbar-toggler"
+			data-bs-target="#navcol-1">
+			<span class="visually-hidden">Toggle navigation</span
+			><span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navcol-1">
+			<ul
+				class="navbar-nav me-auto"
+				style="background: rgba(33, 37, 41, 0.5)">
+				<li class="nav-item">
+					<a
+						class="nav-link active"
+						routerLink="/prices"
+						style="color: var(--bs-white)"
+						>Pricing</a
+					>
+				</li>
+				<li class="nav-item">
+					<a
+						class="nav-link active"
+						routerLink="/services"
+						style="color: var(--bs-white)"
+						>Services</a
+					>
+				</li>
+				<li class="nav-item">
+					<a
+						class="nav-link active"
+						routerLink="../wallet"
+						style="color: var(--bs-white)"
+						>Wallet</a
+					>
+				</li>
+				<li class="nav-item">
+					<a
+						class="nav-link active"
+						routerLink="../details"
+						style="color: var(--bs-white)"
+						>Details</a
+					>
+				</li>
+				<li class="nav-item">
+					<a
+						class="nav-link active"
+						routerLink="../"
+						style="color: var(--bs-white)"
+						>Front Desk</a
+					>
+				</li>
+			</ul>
+			<span class="navbar-text actions">
+				<a class="btn btn-light action-button" role="button" (click)="logout()"
+					>Sign Out</a
+				></span
+			>
+		</div>
+	</div>
+</nav>
+<form
+	class="d-flex"
+	style="
+		margin: 95px;
+		padding: 12px;
+		background: RGB(30, 40, 51);
+		color: rgb(255, 255, 255);
+		height: 500px;
+	">
+	<div class="container d-flex flex-column justify-content-between">
+		<label class="form-label text-uppercase"
+			>Leaving<i class="fa fa-map-marker" style="margin-left: 12px"></i
+			><input class="form-control" type="text" /></label
+		><label class="form-label text-uppercase"
+			>Arriving<i class="fa fa-map-marker" style="margin-left: 12px"></i
+			><input class="form-control" type="text" /></label
+		><label class="form-label text-uppercase"
+			>Language<i class="fa fa-comment-o" style="margin-left: 12px"></i
+			><select class="form-select" required="">
+				<optgroup label="This is a group">
+					<option value="" selected="">Select A Language</option>
+					<option value="english">English</option>
+					<option value="spanish">Spanish</option>
+					<option value="french">French</option>
+				</optgroup>
+			</select></label
+		><label class="form-label text-uppercase"
+			>Music choice<i class="fa fa-music" style="margin-left: 12px"></i
+			><select class="form-select" required="">
+				<optgroup label="This is a group">
+					<option value="" selected="">Select A Language</option>
+					<option value="english">English</option>
+					<option value="spanish">Spanish</option>
+					<option value="french">French</option>
+				</optgroup>
+			</select></label
+		><label class="form-label text-uppercase"
+			>APPOINTMENT<i class="fa fa-clock-o" style="margin-left: 12px"></i
+			><input class="form-control" type="datetime-local" /></label
+		><button class="btn btn-primary" type="button">Book your Charter</button>
+	</div>
+	<div class="container d-flex flex-column">
+		<iframe
+			allowfullscreen=""
+			frameborder="0"
+			src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCkQUYuQUFKmTZqYVUxschvMaJ2JifDGys&amp;q=Kingston%2C+Jamaica&amp;zoom=15"
+			width="100%"
+			height="400"
+			style="height: 100%"></iframe>
+		<div></div>
+	</div>
+</form>

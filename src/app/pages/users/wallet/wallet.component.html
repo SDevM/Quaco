@@ -1,1 +1,111 @@
-<p>wallet works!</p>
+<nav
+	class="navbar navbar-dark navbar-expand-lg bg-success navigation-clean-button">
+	<div class="container">
+		<a
+			class="navbar-brand"
+			href="#"
+			style="font-size: 30px; color: var(--bs-white)"
+			>QUACO</a
+		><button
+			data-bs-toggle="collapse"
+			class="navbar-toggler"
+			data-bs-target="#navcol-1">
+			<span class="visually-hidden">Toggle navigation</span
+			><span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navcol-1">
+			<ul class="navbar-nav me-auto">
+				<li class="nav-item" routerLink="../">
+					<a class="nav-link active">Front Desk</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active">Wallet</a>
+				</li>
+				<li class="nav-item" routerLink="../details">
+					<a class="nav-link active">Details</a>
+				</li>
+				<li class="nav-item" routerLink="../history">
+					<a class="nav-link active">History</a>
+				</li>
+				<li class="nav-item" routerLink="/prices">
+					<a class="nav-link active">Pricing</a>
+				</li>
+				<li class="nav-item" routerLink="/services">
+					<a class="nav-link active">Services</a>
+				</li>
+			</ul>
+			<span class="navbar-text actions">
+				<a
+					class="btn btn-light action-button"
+					role="button"
+					(click)="logout()"
+					style="background: var(--bs-teal)"
+					>Sign Out</a
+				></span
+			>
+		</div>
+	</div>
+</nav>
+<div class="container hero" style="margin: 40px auto">
+	<div class="row">
+		<div class="col-12 col-lg-6 col-xl-5 offset-xl-1">
+			<h1 style="margin: 24px 0px">Wallet</h1>
+			<figure
+				class="figure d-flex align-items-center"
+				style="
+					padding: 10px;
+					border-radius: 10px;
+					background: var(--bs-teal);
+					border-style: none;
+					border-color: var(--bs-blue);
+				">
+				<img
+					class="img-fluid figure-img"
+					src="assets/img/Mastercard-logo.svg.png"
+					width="128px"
+					style="margin-right: 20px" />
+				<figcaption class="figure-caption d-flex flex-column">
+					<span style="color: var(--bs-white)">Jon R. Buckle</span
+					><span style="color: var(--bs-gray-900)">12************67</span>
+				</figcaption>
+				<i
+					class="fa fa-remove align-self-start ms-auto"
+					style="font-size: 32px"></i>
+			</figure>
+			<figure
+				class="figure d-flex align-items-center"
+				style="
+					padding: 10px;
+					border-radius: 10px;
+					background: var(--bs-teal);
+					border-style: none;
+					border-color: var(--bs-blue);
+				">
+				<img
+					class="img-fluid figure-img"
+					src="assets/img/Mastercard-logo.svg.png"
+					width="128px"
+					style="margin-right: 20px" />
+				<figcaption class="figure-caption d-flex flex-column">
+					<span style="color: var(--bs-white)">Jon R. Buckle</span
+					><span style="color: var(--bs-gray-900)">12************67</span>
+				</figcaption>
+				<i
+					class="fa fa-remove align-self-start ms-auto"
+					style="font-size: 32px"></i>
+			</figure>
+			<button class="btn btn-light btn-lg action-button" type="button">
+				Add Card&nbsp;<i
+					class="fa fa-credit-card"
+					style="font-size: 32px"></i>
+			</button>
+		</div>
+		<div
+			class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder">
+			<img
+				class="device"
+				style="width: 100%"
+				src="assets/img/pexels-woodysmedia-4394799.jpg" />
+		</div>
+	</div>
+</div>

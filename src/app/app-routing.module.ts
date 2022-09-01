@@ -11,12 +11,16 @@ const routes: Routes = [
 	{ path: 'home', component: HomeComponent },
 	{ path: 'services', component: ServicesComponent },
 	{ path: 'prices', component: PricingComponent },
-	{ path: 'team', component: TeamComponent  },
+	{ path: 'team', component: TeamComponent },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'signup', component: SignupComponent },
-	{ path: 'users', loadChildren: () => import('./pages/users/users.module').then( m => m.UsersModule) },
 	{
-		path: '',
+		path: 'users',
+		loadChildren: () =>
+			import('./pages/users/users.module').then((m) => m.UsersModule),
+	},
+	{
+		path: '**',
 		redirectTo: 'home',
 		pathMatch: 'full',
 	},

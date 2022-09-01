@@ -1,6 +1,7 @@
 <nav class="navbar navbar-light navbar-expand-lg navigation-clean-button">
 	<div class="container">
-		<a class="navbar-brand" href="#" style="font-size: 30px">QUACO</a
+		<a class="navbar-brand" routerLink="/home" style="font-size: 30px"
+			>QUACO</a
 		><button
 			data-bs-toggle="collapse"
 			class="navbar-toggler"
@@ -10,28 +11,30 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navcol-1">
 			<ul class="navbar-nav me-auto">
-				<li class="nav-item">
-					<a class="nav-link active" href="#">Front Desk</a>
+				<li class="nav-item" routerLink="../">
+					<a class="nav-link active">Front Desk</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link active" href="#">Wallet</a>
+				<li class="nav-item" routerLink="../wallet">
+					<a class="nav-link active">Wallet</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link active" href="#">Details</a>
+				<li class="nav-item" routerLink="../details">
+					<a class="nav-link active">Details</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link active" href="#">History</a>
+				<li class="nav-item" routerLink="../history">
+					<a class="nav-link active">History</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link active" href="#">Pricing</a>
+				<li class="nav-item" routerLink="/prices">
+					<a class="nav-link active">Pricing</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link active" href="#">Services</a>
+				<li class="nav-item" routerLink="/services">
+					<a class="nav-link active">Services</a>
 				</li>
-				<li class="nav-item"></li>
 			</ul>
 			<span class="navbar-text actions">
-				<a class="btn btn-light action-button" role="button" href="#"
+				<a
+					class="btn btn-light action-button"
+					role="button"
+					(click)="logout()"
 					>Sign Out</a
 				></span
 			>
@@ -104,12 +107,13 @@
 			<a
 				class="btn btn-primary"
 				role="button"
-				href="#"
+				routerLink="/charter"
 				style="background: var(--bs-teal)"
 				>Pick me up at home</a
 			><button
 				class="btn btn-light"
 				type="button"
+				routerLink="/charter"
 				style="
 					background: rgba(221, 221, 221, 0);
 					color: var(--bs-white);
@@ -137,7 +141,7 @@
 					<a
 						class="btn btn-primary"
 						role="button"
-						href="#"
+						routerLink="../wallet"
 						style="
 							background: rgba(0, 0, 0, 0);
 							color: var(--bs-white);
@@ -186,7 +190,7 @@
 			<a
 				class="btn btn-primary"
 				role="button"
-				href="#"
+				routerLink="../details"
 				style="border-color: var(--bs-teal)"
 				>Details Centre</a
 			>

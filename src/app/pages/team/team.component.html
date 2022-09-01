@@ -1,57 +1,105 @@
 <nav class="navbar navbar-light navbar-expand-lg navigation-clean-button">
-    <div class="container"><a class="navbar-brand" href="#" style="font-size: 30px;">QUACO</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navcol-1">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item"><a class="nav-link active" href="#">Services</a></li>
-                <li class="nav-item"><a class="nav-link active" href="#">Pricing</a></li>
-                <li class="nav-item"><a class="nav-link active" href="#">Drive &amp; Earn</a></li>
-            </ul><span class="navbar-text actions"> <a class="login" href="#">Log In</a><a class="btn btn-light action-button" role="button" href="#" style="background: var(--bs-teal);">Sign Up</a></span>
-        </div>
-    </div>
+	<div class="container">
+		<a class="navbar-brand" routerLink="/home" style="font-size: 30px">QUACO</a
+		><button
+			data-bs-toggle="collapse"
+			class="navbar-toggler"
+			data-bs-target="#navcol-1">
+			<span class="visually-hidden">Toggle navigation</span
+			><span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navcol-1">
+			<ul class="navbar-nav me-auto">
+				<li class="nav-item">
+					<a class="nav-link active" routerLink="/services">Services</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" routerLink="/prices">Pricing</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" href="#">Drive &amp; Earn</a>
+				</li>
+			</ul>
+			<span class="navbar-text actions">
+				<a class="login" routerLink="/login">Log In</a
+				><a
+					class="btn btn-light action-button"
+					role="button"
+					routerLink="/signup"
+					style="background: var(--bs-teal)"
+					>Sign Up</a
+				></span
+			>
+		</div>
+	</div>
 </nav>
 <section class="team-grid">
-    <div class="container">
-        <div class="intro">
-            <h1 class="display-2 text-center">Team </h1>
-            <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet.&nbsp; </p>
-        </div>
-        <div class="row people">
-            <div class="col-md-4 col-lg-3 item">
-                <div class="box" style="background: url(&quot;assets/img/chad.jpg&quot;);background-size: cover;">
-                    <div class="cover">
-                        <h3 class="name">Chad Chizzle</h3>
-                        <p class="title">CEO</p>
-                        <div class="social"><a href="#"><i class="fa fa-facebook-official"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-3 item">
-                <div class="box" style="background-image:url(assets/img/2.jpg)">
-                    <div class="cover">
-                        <h3 class="name">Emily Clark</h3>
-                        <p class="title">Logistics expert</p>
-                        <div class="social"><a href="#"><i class="fa fa-facebook-official"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-3 item">
-                <div class="box" style="background-image:url(assets/img/3.jpg)">
-                    <div class="cover">
-                        <h3 class="name">Carl Kent</h3>
-                        <p class="title">engineer</p>
-                        <div class="social"><a href="#"><i class="fa fa-facebook-official"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-3 item">
-                <div class="box" style="background-image:url(assets/img/4.jpg)">
-                    <div class="cover">
-                        <h3 class="name">Felicia Adams</h3>
-                        <p class="title">Ex-Driver</p>
-                        <div class="social"><a href="#"><i class="fa fa-facebook-official"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="container">
+		<div class="intro">
+			<h1 class="display-2 text-center">Team</h1>
+			<p class="text-center">
+				Nunc luctus in metus eget fringilla. Aliquam sed justo ligula.
+				Vestibulum nibh erat, pellentesque ut laoreet.&nbsp;
+			</p>
+		</div>
+		<div class="row people">
+			<div class="col-md-4 col-lg-3 item">
+				<div
+					class="box"
+					style="
+						background: url('assets/img/chad.jpg');
+						background-size: cover;
+					">
+					<div class="cover">
+						<h3 class="name">Chad Chizzle</h3>
+						<p class="title">CEO</p>
+						<div class="social">
+							<a href="#"><i class="fa fa-facebook-official"></i></a
+							><a href="#"><i class="fa fa-twitter"></i></a
+							><a href="#"><i class="fa fa-instagram"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-lg-3 item">
+				<div class="box" style="background-image: url(assets/img/2.jpg)">
+					<div class="cover">
+						<h3 class="name">Emily Clark</h3>
+						<p class="title">Logistics expert</p>
+						<div class="social">
+							<a href="#"><i class="fa fa-facebook-official"></i></a
+							><a href="#"><i class="fa fa-twitter"></i></a
+							><a href="#"><i class="fa fa-instagram"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-lg-3 item">
+				<div class="box" style="background-image: url(assets/img/3.jpg)">
+					<div class="cover">
+						<h3 class="name">Carl Kent</h3>
+						<p class="title">engineer</p>
+						<div class="social">
+							<a href="#"><i class="fa fa-facebook-official"></i></a
+							><a href="#"><i class="fa fa-twitter"></i></a
+							><a href="#"><i class="fa fa-instagram"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-lg-3 item">
+				<div class="box" style="background-image: url(assets/img/4.jpg)">
+					<div class="cover">
+						<h3 class="name">Felicia Adams</h3>
+						<p class="title">Ex-Driver</p>
+						<div class="social">
+							<a href="#"><i class="fa fa-facebook-official"></i></a
+							><a href="#"><i class="fa fa-twitter"></i></a
+							><a href="#"><i class="fa fa-instagram"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
