@@ -10,11 +10,12 @@ import { ServicesComponent } from './pages/services/services.component';
 import { PricingComponent } from './pages/pricing/pricing.component';
 import { TeamComponent } from './pages/team/team.component';
 import { LoginComponent } from './pages/login/login.component';
-import { SignupComponent } from './pages/signup/signup.component'
+import { SignupComponent } from './pages/signup/signup.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
 	declarations: [AppComponent, FooterComponent, HomeComponent, ServicesComponent, PricingComponent, TeamComponent, LoginComponent, SignupComponent],
-	imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+	imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule],
 	providers: [],
 	bootstrap: [AppComponent],
 })
