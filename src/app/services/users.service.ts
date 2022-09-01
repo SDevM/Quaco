@@ -1,10 +1,10 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { nextTick } from 'process'
 import { Observable } from 'rxjs'
 import { environment } from 'src/environments/environment'
+import { GenericSubscribe } from '../interfaces/default'
 import { JSONResponse } from '../interfaces/json.interface'
-import { User, UserLogin } from '../interfaces/users.interface'
+import { User } from '../interfaces/users.interface'
 
 @Injectable({
 	providedIn: 'root',
@@ -12,97 +12,76 @@ import { User, UserLogin } from '../interfaces/users.interface'
 export class UsersService {
 	constructor(private http: HttpClient) {}
 
+	/**
+	 * Http request for creating a new user login
+	 * @param user New user information
+	 * @returns Observable
+	 */
 	signUp(user: User) {
 		let obs = new Observable<User>((observer) => {
 			this.http
 				.post<JSONResponse<User>>(environment.apiUrl + '/users', user, {
 					observe: 'response',
 				})
-				.subscribe({
-					next: (data) => {
-						console.log(data.body)
-						observer.next(data.body?.data)
-						observer.complete()
-					},
-					error: (err: HttpErrorResponse) => {
-						console.error(err.error)
-						observer.next(err.error.data)
-						observer.complete()
-					},
-				})
+				.subscribe(GenericSubscribe(observer))
 		})
 		return obs
 	}
 
-	updateUser(user: User) {
+	/**
+	 * Http request for updating a user
+	 * @param user Updated user information
+	 * @returns Observale
+	 */
+	updateUser(user: any) {
 		let obs = new Observable<User>((observer) => {
 			this.http
 				.patch<JSONResponse<User>>(environment.apiUrl + '/users', user, {
 					observe: 'response',
 				})
-				.subscribe({
-					next: (data) => {
-						console.log(data.body)
-						observer.next(data.body?.data)
-						observer.complete()
-					},
-					error: (err: HttpErrorResponse) => {
-						console.error(err.error)
-						observer.next(err.error.data)
-						observer.complete()
-					},
-				})
+				.subscribe(GenericSubscribe(observer))
 		})
 		return obs
 	}
 
-	deleteUser(user: User) {
+	/**
+	 * Http request to delete the current account
+	 * @returns Observable
+	 */
+	deleteUser() {
 		let obs = new Observable<User>((observer) => {
 			this.http
 				.delete<JSONResponse<User>>(environment.apiUrl + '/users', {
 					observe: 'response',
 				})
-				.subscribe({
-					next: (data) => {
-						console.log(data.body)
-						observer.next(data.body?.data)
-						observer.complete()
-					},
-					error: (err: HttpErrorResponse) => {
-						console.error(err.error)
-						observer.next(err.error.data)
-						observer.complete()
-					},
-				})
+				.subscribe(GenericSubscribe(observer))
 		})
 		return obs
 	}
 
-	signIn(user: UserLogin) {
-		let obs = new Observable((observer) => {
+	/**
+	 * Http request to sign into a user account
+	 * @param user Email and Password
+	 * @returns Observable
+	 */
+	signIn(user: Partial<User>) {
+		let obs = new Observable<User>((observer) => {
 			this.http
 				.post<JSONResponse<User>>(
 					environment.apiUrl + '/users/login',
 					user,
 					{ observe: 'response' }
 				)
-				.subscribe({
-					next: (data) => {
-						console.log(data.body)
-						observer.next(data.body?.data)
-						observer.complete()
-					},
-					error: (err) => {
-						console.error(err.error)
-						observer.next(err.error.data)
-						observer.complete()
-					},
-				})
+				.subscribe(GenericSubscribe(observer))
 		})
 
 		return obs
 	}
 
+	/**
+	 * Http request to end the current login session
+	 * @returns Observable
+	 */
 	signOut() {
 		let obs = new Observable((observer) => {
 			this.http
@@ -110,18 +89,7 @@ export class UsersService {
 					environment.apiUrl + '/users/logout',
 					{ observe: 'response' }
 				)
-				.subscribe({
-					next: (data) => {
-						console.log(data.body)
-						observer.next(data.body?.data)
-						observer.complete()
-					},
-					error: (err) => {
-						console.error(err.error)
-						observer.next(err.error.data)
-						observer.complete()
-					},
-				})
+				.subscribe(GenericSubscribe(observer))
 		})
 
 		return obs
