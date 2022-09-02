@@ -22,7 +22,7 @@ export class UsersService {
 		let obs = new Observable<User>((observer) => {
 			this.http
 				.post<JSONResponse<User>>(environment.apiUrl + '/users', user, {
-					observe: 'response',
+					withCredentials: true,
 				})
 				.subscribe(GenericSubscribe(observer))
 		})
@@ -38,7 +38,7 @@ export class UsersService {
 		let obs = new Observable<User>((observer) => {
 			this.http
 				.patch<JSONResponse<User>>(environment.apiUrl + '/users', user, {
-					observe: 'response',
+					withCredentials: true,
 				})
 				.subscribe(GenericSubscribe(observer))
 		})
@@ -53,7 +53,7 @@ export class UsersService {
 		let obs = new Observable<User>((observer) => {
 			this.http
 				.delete<JSONResponse<User>>(environment.apiUrl + '/users', {
-					observe: 'response',
+					withCredentials: true,
 				})
 				.subscribe(GenericSubscribe(observer))
 		})
@@ -104,7 +104,7 @@ export class UsersService {
 			this.http
 				.get<JSONResponse<undefined>>(
 					environment.apiUrl + '/users/logout',
-					{ observe: 'response' }
+					{ withCredentials: true }
 				)
 				.subscribe(GenericSubscribe(observer))
 		})
@@ -120,7 +120,7 @@ export class UsersService {
 		let obs = new Observable<Title[]>((observer) => {
 			this.http
 				.get<JSONResponse<Title[]>>(environment.apiUrl + '/titles', {
-					observe: 'response',
+					withCredentials: true,
 				})
 				.subscribe(GenericSubscribe(observer))
 		})

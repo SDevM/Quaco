@@ -24,7 +24,7 @@ export class ReportsService {
 					environment.apiUrl + '/reports',
 					report,
 					{
-						observe: 'response',
+						withCredentials: true,
 					}
 				)
 				.subscribe(GenericSubscribe(observer))
@@ -41,7 +41,7 @@ export class ReportsService {
 		let obs = new Observable<Report[]>((observer) => {
 			this.http
 				.get<JSONResponse<Report[]>>(environment.apiUrl + '/reports', {
-					observe: 'response',
+					withCredentials: true,
 				})
 				.subscribe(GenericSubscribe(observer))
 		})
@@ -60,7 +60,7 @@ export class ReportsService {
 					environment.apiUrl + '/reports',
 					report,
 					{
-						observe: 'response',
+						withCredentials: true,
 					}
 				)
 				.subscribe(GenericSubscribe(observer))

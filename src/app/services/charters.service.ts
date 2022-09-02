@@ -24,7 +24,7 @@ export class ChartersService {
 					environment.apiUrl + '/charters',
 					charter,
 					{
-						observe: 'response',
+						withCredentials: true,
 					}
 				)
 				.subscribe(GenericSubscribe(observer))
@@ -44,7 +44,7 @@ export class ChartersService {
 				.delete<JSONResponse<Charter>>(
 					environment.apiUrl + `/charters/${id}`,
 					{
-						observe: 'response',
+						withCredentials: true,
 					}
 				)
 				.subscribe(GenericSubscribe(observer))
