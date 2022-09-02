@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 				if (result) this.router.navigate(['/users'])
 			},
 			error: (err) => {
-				alert(err.message)
+				alert(err.err.message)
 			},
 		})
 	}
