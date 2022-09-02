@@ -12,6 +12,8 @@ import { TeamComponent } from './pages/team/team.component'
 import { LoginComponent } from './pages/login/login.component'
 import { SignupComponent } from './pages/signup/signup.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { FormsModule } from '@angular/forms'
+import { GoogleMapsModule } from '@angular/google-maps'
 
 @NgModule({
 	declarations: [
@@ -22,9 +24,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 		PricingComponent,
 		TeamComponent,
 		LoginComponent,
-		SignupComponent,
+		SignupComponent
 	],
-	imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule],
+	imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule, FormsModule, GoogleMapsModule],
 	providers: [],
 	bootstrap: [AppComponent],
 })

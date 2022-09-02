@@ -8,11 +8,13 @@
 		class="navbar navbar-light navbar-expand-lg navigation-clean"
 		style="background: rgba(255, 255, 255, 0); color: var(--bs-white)">
 		<div class="container">
-			<a class="navbar-brand" routerLink="/home" style="font-size: 30px">QUACO</a>
+			<a class="navbar-brand" routerLink="/home" style="font-size: 30px"
+				>QUACO</a
+			>
 			<div class="collapse navbar-collapse" id="navcol-1"></div>
 		</div>
 	</nav>
-	<form style="max-width: 400px">
+	<form #form="ngForm" style="max-width: 400px">
 		<h2 class="visually-hidden">Login Form</h2>
 		<div class="illustration">
 			<i
@@ -24,20 +26,25 @@
 				class="form-control"
 				type="email"
 				name="email"
-				placeholder="Email" />
+				placeholder="Email"
+				[(ngModel)]="user.email"
+				required="" />
 		</div>
 		<div class="mb-3">
 			<input
 				class="form-control"
 				type="password"
 				name="password"
-				placeholder="Password" />
+				placeholder="Password"
+				[(ngModel)]="user.password"
+				required />
 		</div>
 		<div class="mb-3">
 			<button
 				class="btn btn-primary d-block w-100"
 				type="submit"
-				style="background: var(--bs-success)">
+				style="background: var(--bs-success)"
+				(click)="form.valid && submit()">
 				Log In
 			</button>
 		</div>
@@ -45,7 +52,8 @@
 			<button
 				class="btn btn-primary d-block w-100"
 				type="submit"
-				style="background: var(--bs-success)">
+				style="background: var(--bs-success)"
+				routerLink="/signup">
 				Create an Account
 			</button>
 		</div>

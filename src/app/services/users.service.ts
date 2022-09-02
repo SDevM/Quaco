@@ -4,6 +4,7 @@ import { Observable } from 'rxjs'
 import { environment } from 'src/environments/environment'
 import { GenericSubscribe } from '../interfaces/default'
 import { JSONResponse } from '../interfaces/json.interface'
+import { Title } from '../interfaces/titles.interface'
 import { User } from '../interfaces/users.interface'
 
 @Injectable({
@@ -70,8 +71,24 @@ export class UsersService {
 				.post<JSONResponse<User>>(
 					environment.apiUrl + '/users/login',
 					user,
-					{ observe: 'response' }
+					{ withCredentials: true }
 				)
+				.subscribe(GenericSubscribe(observer))
+		})
+
+		return obs
+	}
+
+	/**
+	 * Http request to validate an active session
+	 * @returns Observable
+	 */
+	checkIn() {
+		let obs = new Observable<User>((observer) => {
+			this.http
+				.get(environment.apiUrl + '/users', {
+					withCredentials: true,
+				})
 				.subscribe(GenericSubscribe(observer))
 		})
 
@@ -89,6 +106,22 @@ export class UsersService {
 					environment.apiUrl + '/users/logout',
 					{ observe: 'response' }
 				)
+				.subscribe(GenericSubscribe(observer))
+		})
+
+		return obs
+	}
+
+	/**
+	 * Http request for the list of availible titles
+	 * @returns Observable
+	 */
+	getTitles() {
+		let obs = new Observable<Title[]>((observer) => {
+			this.http
+				.get<JSONResponse<Title[]>>(environment.apiUrl + '/titles', {
+					observe: 'response',
+				})
 				.subscribe(GenericSubscribe(observer))
 		})
 

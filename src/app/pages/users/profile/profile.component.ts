@@ -1,14 +1,55 @@
-import { Component, OnInit } from '@angular/core'
+import {
+	AfterViewInit,
+	Component,
+	ElementRef,
+	OnInit,
+	ViewChild,
+} from '@angular/core'
+import { Router } from '@angular/router'
+import { User } from 'src/app/interfaces/users.interface'
+import { UsersService } from 'src/app/services/users.service'
 
 @Component({
 	selector: 'app-profile',
 	templateUrl: './profile.component.html',
 	styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent implements OnInit {
-	constructor() {}
+export class ProfileComponent implements AfterViewInit {
+	user!: User
+	map!: google.maps.Map
+	@ViewChild('map') viewMap!: ElementRef<HTMLDivElement>
+	constructor(private userService: UsersService, private router: Router) {}
 
-	ngOnInit(): void {}
+	ngAfterViewInit(): void {
+		// On a non-android system we'll try to use the browser version
+		navigator.geolocation.getCurrentPosition((position) => {
+			new google.maps.Geocoder()
+				.geocode({ address: this.user.address })
+				.then((resp) => {
+					// Initialize the map using the div element and these options
+					this.map = new google.maps.Map(this.viewMap.nativeElement, {
+						center: resp.results[0].geometry.location,
+						zoom: 15,
+					})
+				})
+				.catch()
+		})
+	}
 
-	logout() {}
+	ngOnInit(): void {
+		this.userService.checkIn().subscribe({
+			next: (data) => {
+				this.user = data
+			},
+			error: (err) => {
+				alert(err.message)
+			},
+		})
+	}
+
+	logout() {
+		this.userService.signOut().subscribe(() => {
+			this.router.navigate(['/home'])
+		})
+	}
 }

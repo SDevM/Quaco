@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
+import { Router, RouterModule, Routes } from '@angular/router'
+import { AuthGuard } from './guards/auth.guard'
 import { HomeComponent } from './pages/home/home.component'
 import { LoginComponent } from './pages/login/login.component'
 import { PricingComponent } from './pages/pricing/pricing.component'
@@ -18,6 +19,7 @@ const routes: Routes = [
 		path: 'users',
 		loadChildren: () =>
 			import('./pages/users/users.module').then((m) => m.UsersModule),
+		canActivate: [AuthGuard],
 	},
 	{
 		path: '**',
@@ -30,4 +32,10 @@ const routes: Routes = [
 	imports: [RouterModule.forRoot(routes)],
 	exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+	constructor(private router: Router) {
+		router.events.subscribe(() => {
+			window.scrollTo(0, 0)
+		})
+	}
+}

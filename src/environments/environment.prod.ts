@@ -1,4 +1,4 @@
 export const environment = {
 	production: true,
-	apiUrl: 'quaco-api.herokuapp.com',
+	apiUrl: 'https://quaco-api.herokuapp.com/api/v1',
 }
