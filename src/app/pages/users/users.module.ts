@@ -6,6 +6,7 @@ import { WalletComponent } from './wallet/wallet.component'
 import { DetailsComponent } from './details/details.component'
 import { HistoryComponent } from './history/history.component'
 import { CharterComponent } from './charter/charter.component'
+import { GoogleMapsModule } from '@angular/google-maps'
 
 @NgModule({
 	declarations: [
@@ -15,6 +16,6 @@ import { CharterComponent } from './charter/charter.component'
 		HistoryComponent,
 		CharterComponent,
 	],
-	imports: [CommonModule, UsersRoutingModule],
+	imports: [CommonModule, UsersRoutingModule, GoogleMapsModule],
 })
 export class UsersModule {}

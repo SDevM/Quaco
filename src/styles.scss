@@ -8,3 +8,7 @@ body::-webkit-scrollbar {
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+li:hover {
+	cursor: pointer;
+}

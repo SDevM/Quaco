@@ -21,19 +21,22 @@ export class ProfileComponent implements AfterViewInit {
 	constructor(private userService: UsersService, private router: Router) {}
 
 	ngAfterViewInit(): void {
-		// On a non-android system we'll try to use the browser version
-		navigator.geolocation.getCurrentPosition((position) => {
-			new google.maps.Geocoder()
-				.geocode({ address: this.user.address })
-				.then((resp) => {
-					// Initialize the map using the div element and these options
-					this.map = new google.maps.Map(this.viewMap.nativeElement, {
-						center: resp.results[0].geometry.location,
-						zoom: 15,
-					})
+		new google.maps.Geocoder()
+			.geocode({ address: this.user.address })
+			.then((resp) => {
+				// Initialize the map using the div element and these options
+				this.map = new google.maps.Map(this.viewMap.nativeElement, {
+					center: resp.results[0].geometry.location,
+					zoom: 15,
+					disableDefaultUI: true,
 				})
-				.catch()
-		})
+				new google.maps.Marker({
+					position: resp.results[0].geometry.location,
+					map: this.map,
+					animation: google.maps.Animation.DROP,
+				})
+			})
+			.catch()
 	}
 
 	ngOnInit(): void {
