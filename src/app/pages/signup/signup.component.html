@@ -8,7 +8,9 @@
 		class="navbar navbar-light navbar-expand-lg navigation-clean"
 		style="background: rgba(255, 255, 255, 0); color: var(--bs-white)">
 		<div class="container">
-			<a class="navbar-brand" routerLink="/home" style="font-size: 30px">QUACO</a>
+			<a class="navbar-brand" routerLink="/home" style="font-size: 30px"
+				>QUACO</a
+			>
 			<div class="collapse navbar-collapse" id="navcol-1"></div>
 		</div>
 	</nav>
@@ -18,48 +20,95 @@
 			<i class="icon ion-key" style="color: var(--bs-success)"></i>
 		</div>
 		<div class="mb-3">
-			<input class="form-control" type="text" placeholder="Title" />
-		</div>
-		<div class="mb-3">
-			<input class="form-control" type="text" placeholder="Name" />
-		</div>
-		<div class="mb-3">
-			<input class="form-control" type="text" placeholder="Surname" />
+			<select
+				required
+				class="form-control"
+				type="text"
+				placeholder="Title"
+				name="title"
+				[(ngModel)]="user.title">
+				<option selected disabled [value]="undefined">
+					Select a Title
+				</option>
+				<option
+					style="color: black"
+					*ngFor="let title of titles"
+					[value]="title._id">
+					{{ title.title }}
+				</option>
+			</select>
 		</div>
 		<div class="mb-3">
 			<input
+				required
+				class="form-control"
+				type="text"
+				placeholder="Name"
+				name="name"
+				[(ngModel)]="user.name" />
+		</div>
+		<div class="mb-3">
+			<input
+				required
+				class="form-control"
+				type="text"
+				placeholder="Surname"
+				name="surname"
+				[(ngModel)]="user.surname" />
+		</div>
+		<div class="mb-3">
+			<input
+				required
 				class="form-control"
 				type="email"
 				name="email"
-				placeholder="Email" />
-		</div>
-		<div class="mb-3">
-			<input class="form-control" type="text" placeholder="Address" />
-		</div>
-		<div class="mb-3">
-			<input
-				class="form-control"
-				type="password"
-				name="password"
-				placeholder="Password" />
+				placeholder="Email"
+				email=""
+				[(ngModel)]="user.email" />
 		</div>
 		<div class="mb-3">
 			<input
+				required
+				#place
+				class="form-control"
+				type="text"
+				name="address"
+				placeholder="Address"
+				[value]="user.address" />
+		</div>
+		<div class="mb-3">
+			<input
+				required
 				class="form-control"
 				type="password"
 				name="password"
-				placeholder="Re-Enter Password" />
+				placeholder="Password"
+				[(ngModel)]="user.password" />
 		</div>
 		<div class="mb-3">
-			<label class="form-label"
-				>Profile Picture<input class="form-control" type="file"
+			<input
+				required
+				class="form-control"
+				type="password"
+				name="password"
+				placeholder="Re-Enter Password"
+				[pattern]="form.form.controls['password'].value" />
+		</div>
+		<div class="mb-3">
+			<label class="form-label" required
+				>Profile Picture<input
+					class="form-control"
+					type="file"
+					name="files"
+					(change)="files($event.target)"
 			/></label>
 		</div>
 		<div class="mb-3">
 			<button
 				class="btn btn-primary d-block w-100"
 				type="submit"
-				style="background: var(--bs-success)">
+				style="background: var(--bs-success)"
+				(click)="submit()">
 				Sign up
 			</button>
 		</div>
