@@ -60,6 +60,15 @@
 			<input
 				required
 				class="form-control"
+				type="text"
+				placeholder="Username"
+				name="username"
+				[(ngModel)]="user.username" />
+		</div>
+		<div class="mb-3">
+			<input
+				required
+				class="form-control"
 				type="email"
 				name="email"
 				placeholder="Email"
@@ -74,7 +83,7 @@
 				type="text"
 				name="address"
 				placeholder="Address"
-				[value]="user.address" />
+				[value]="user.address ?? ''" />
 		</div>
 		<div class="mb-3">
 			<input

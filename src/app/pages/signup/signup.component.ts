@@ -29,7 +29,13 @@ export class SignupComponent implements OnInit, AfterViewInit {
 		})
 
 		auto.addListener('place_changed', () => {
-			this.user.address = auto.getPlace().formatted_address
+			let location = auto.getPlace().geometry?.location
+			new google.maps.Geocoder()
+				.geocode({ location: location })
+				.then((resp) => {
+					this.user.address = resp.results[0].formatted_address
+				})
+				.catch(() => (this.user.address = ''))
 		})
 	}
 
