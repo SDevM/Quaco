@@ -74,7 +74,10 @@
 					</li>
 				</ul>
 				<span class="navbar-text actions">
-					<a class="btn btn-light action-button" role="button" (click)="logout()"
+					<a
+						class="btn btn-light action-button"
+						role="button"
+						(click)="logout()"
 						>Sign Out</a
 					></span
 				>
@@ -96,6 +99,7 @@
 					>Leaving<i class="fa fa-map-marker" style="margin-left: 12px"></i
 					><input
 						#start
+						autocomplete="off"
 						class="form-control"
 						type="text"
 						name="leaving"
@@ -107,6 +111,7 @@
 						style="margin-left: 12px"></i
 					><input
 						#end
+						autocomplete="off"
 						class="form-control"
 						type="text"
 						name="arriving"
@@ -139,7 +144,7 @@
 						</option>
 					</select></label
 				><label class="form-label text-uppercase"
-					>APPOINTMENT<i
+					>Appointment<i
 						class="fa fa-clock-o"
 						style="margin-left: 12px"></i
 					><input
