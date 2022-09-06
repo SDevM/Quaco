@@ -46,7 +46,7 @@
 		<div class="card-body d-flex justify-content-center align-items-center">
 			<div style="padding: 20px">
 				<h4>{{ user.username.toUpperCase() }}</h4>
-				<h5 class="text-secondary">{{ user.name + ' ' + user.surname }}</h5>
+				<h5 class="text-secondary">{{ user.name }}</h5>
 				<hr
 					style="
 						color: var(--bs-success);
@@ -57,16 +57,11 @@
 				<h5 class="text-secondary">{{ user.address }}</h5>
 			</div>
 			<div
-				style="width: calc(12.5vw + 12.5vh); height: calc(12.5vw + 12.5vh)">
-				<div #avatar
-					style="
-						height: calc(12.5vw + 12.5vh);
-						width: calc(12.5vw + 12.5vh);
-						background-size: cover;
-						border-radius: 50%;
-						margin-bottom: 20px;
-					"></div>
-			</div>
+				[style]="
+					'height: calc(12.5vw + 12.5vh); width: calc(12.5vw + 12.5vh); background: url(' +
+					avatar_url +
+					'); background-size: cover; border-radius: 50%; margin-bottom: 20px'
+				"></div>
 			<div #map style="margin: 20px; width: 400px; height: 200px"></div>
 		</div>
 	</div>

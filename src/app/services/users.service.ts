@@ -44,8 +44,9 @@ export class UsersService {
 		let obs = new Observable<User>((observer) => {
 			let data = new FormData()
 			Object.keys(user).forEach((e) => {
-				if (e === 'profile_pic') data.append(e, user[e as keyof User]!)
-				else data.set(e, user[e as keyof User]!)
+				if (e === 'profile_pic')
+					data.append(e, user[e as keyof User] as File)
+				else data.set(e, user[e as keyof User] as string)
 			})
 			this.http
 				.post<JSONResponse<User>>(environment.apiUrl + '/users', data, {

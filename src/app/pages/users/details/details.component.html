@@ -51,13 +51,10 @@
 		<div class="col-6 col-lg-6 col-xl-5 offset-xl-1 d-flex flex-column">
 			<h1 style="margin: 24px 0px">Personal Details</h1>
 			<span style="color: var(--bs-gray); font-size: 24px">Username</span
-			><input type="text" /><span
+			><input type="text" [(ngModel)]="user.email" /><span
 				style="color: var(--bs-gray); font-size: 24px"
 				>Email</span
 			><input type="email" /><span
-				style="color: var(--bs-gray); font-size: 24px"
-				>Birthday</span
-			><input class="form-control-lg" type="date" /><span
 				style="color: var(--bs-gray); font-size: 24px"
 				>Address</span
 			><textarea></textarea

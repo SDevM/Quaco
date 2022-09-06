@@ -11,6 +11,7 @@ import { UsersService } from 'src/app/services/users.service'
 export class ProfileComponent implements AfterViewInit {
 	user!: User
 	map!: google.maps.Map
+	avatar_url!: string
 	@ViewChild('map') viewMap!: ElementRef<HTMLElement>
 	@ViewChild('avatar') avatar!: ElementRef<HTMLImageElement>
 	constructor(private userService: UsersService, private router: Router) {}
@@ -31,15 +32,20 @@ export class ProfileComponent implements AfterViewInit {
 					animation: google.maps.Animation.DROP,
 				})
 			})
-			.catch()
+			.catch((err) => {
+				console.error(err)
+				this.map = new google.maps.Map(this.viewMap.nativeElement, {
+					zoom: 15,
+					disableDefaultUI: true,
+				})
+			})
 	}
 
 	ngOnInit(): void {
 		this.userService.checkIn().subscribe({
 			next: (data) => {
 				this.user = data
-				let url = window.webkitURL.createObjectURL(data.profile_pic!)
-				this.avatar.nativeElement.style.background = `url(${url})`
+				this.avatar_url = (this.user.profile_pic as any).link
 			},
 			error: (err) => {
 				alert(err.message)
