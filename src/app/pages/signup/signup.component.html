@@ -26,13 +26,14 @@
 				type="text"
 				placeholder="Title"
 				name="title"
-				[(ngModel)]="user.title">
+				[(ngModel)]="user.title"
+				required="">
 				<option selected disabled [value]="undefined">
 					Select a Title
 				</option>
 				<option
 					style="color: black"
-					*ngFor="let title of titles"
+					*ngFor="let title of uService.titles"
 					[value]="title._id">
 					{{ title.title }}
 				</option>
@@ -45,7 +46,8 @@
 				type="text"
 				placeholder="Name"
 				name="name"
-				[(ngModel)]="user.name" />
+				[(ngModel)]="user.name"
+				required="" />
 		</div>
 		<div class="mb-3">
 			<input
@@ -54,7 +56,8 @@
 				type="text"
 				placeholder="Surname"
 				name="surname"
-				[(ngModel)]="user.surname" />
+				[(ngModel)]="user.surname"
+				required="" />
 		</div>
 		<div class="mb-3">
 			<input
@@ -63,7 +66,8 @@
 				type="text"
 				placeholder="Username"
 				name="username"
-				[(ngModel)]="user.username" />
+				[(ngModel)]="user.username"
+				required="" />
 		</div>
 		<div class="mb-3">
 			<input
@@ -73,7 +77,8 @@
 				name="email"
 				placeholder="Email"
 				email=""
-				[(ngModel)]="user.email" />
+				[(ngModel)]="user.email"
+				required="" />
 		</div>
 		<div class="mb-3">
 			<input
@@ -83,7 +88,8 @@
 				type="text"
 				name="address"
 				placeholder="Address"
-				[value]="user.address ?? ''" />
+				[value]="user.address ?? ''"
+				required="" />
 		</div>
 		<div class="mb-3">
 			<input
@@ -92,7 +98,8 @@
 				type="password"
 				name="password"
 				placeholder="Password"
-				[(ngModel)]="user.password" />
+				[(ngModel)]="user.password"
+				required="" />
 		</div>
 		<div class="mb-3">
 			<input
@@ -101,7 +108,8 @@
 				type="password"
 				name="password"
 				placeholder="Re-Enter Password"
-				[pattern]="form.form.controls['password'].value" />
+				[pattern]="form.form.controls['password'].value"
+				[required]="" />
 		</div>
 		<div class="mb-3">
 			<label class="form-label" required
@@ -110,6 +118,7 @@
 					type="file"
 					name="files"
 					(change)="files($event.target)"
+					required
 			/></label>
 		</div>
 		<div class="mb-3">
@@ -117,8 +126,17 @@
 				class="btn btn-primary d-block w-100"
 				type="submit"
 				style="background: var(--bs-success)"
-				(click)="submit()">
+				(click)="form.valid && user.address && submit()">
 				Sign up
+			</button>
+		</div>
+		<div class="mb-3">
+			<button
+				class="btn btn-primary d-block w-100"
+				type="submit"
+				style="background: var(--bs-success)"
+				routerLink="/login">
+				Already have an account?
 			</button>
 		</div>
 	</form>

@@ -19,7 +19,7 @@
 					<a class="nav-link active">Drive &amp; Earn</a>
 				</li>
 			</ul>
-			<span class="navbar-text actions">
+			<span *ngIf="!active" class="navbar-text actions">
 				<a class="login" routerLink="/login">Log In</a
 				><a
 					class="btn btn-light action-button"
@@ -27,6 +27,14 @@
 					routerLink="/signup"
 					style="background: var(--bs-teal)"
 					>Sign Up</a
+				></span
+			>
+			<span *ngIf="active" class="navbar-text actions">
+				<a
+					class="btn btn-light action-button"
+					role="button"
+					routerLink="/users"
+					>Profile</a
 				></span
 			>
 		</div>
@@ -101,7 +109,7 @@
 				</h3>
 				<p class="description">
 					Our cheerful and efficient customer service representatives are
-					always here to server you.
+					always here to serve you.
 				</p>
 			</div>
 		</div>

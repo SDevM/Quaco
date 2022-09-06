@@ -10,5 +10,5 @@ export interface User {
 	email: string
 	password: string
 	address: string
-	profile_pic?: File
+	profile_pic: File
 }

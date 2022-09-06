@@ -42,10 +42,23 @@
 				<ul class="navbar-nav">
 					<li class="nav-item"></li>
 				</ul>
-				<span class="navbar-text">
-					<a class="login" routerLink="/login">Log In</a></span
-				><a class="btn btn-light action-button" role="button" routerLink="/signup"
-					>Sign Up</a
+				<span *ngIf="!active" class="navbar-text actions">
+					<a class="login" routerLink="/login">Log In</a
+					><a
+						class="btn btn-light action-button"
+						role="button"
+						routerLink="/signup"
+						style="background: var(--bs-teal)"
+						>Sign Up</a
+					></span
+				>
+				<span *ngIf="active" class="navbar-text actions">
+					<a
+						class="btn btn-light action-button"
+						role="button"
+						routerLink="/users"
+						>Profile</a
+					></span
 				>
 			</div>
 		</div>
@@ -59,7 +72,10 @@
 					professional and punctual drivers get the job done - at the most
 					affordable price among competitors.
 				</p>
-				<button class="btn btn-light btn-lg action-button" type="button">
+				<button
+					class="btn btn-light btn-lg action-button"
+					routerLink="/login"
+					type="button">
 					Change how you move
 				</button>
 			</div>

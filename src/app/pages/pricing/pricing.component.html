@@ -19,7 +19,7 @@
 					<a class="nav-link active">Drive &amp; Earn</a>
 				</li>
 			</ul>
-			<span class="navbar-text actions">
+			<span *ngIf="!active" class="navbar-text actions">
 				<a class="login" routerLink="/login">Log In</a
 				><a
 					class="btn btn-light action-button"
@@ -27,6 +27,14 @@
 					routerLink="/signup"
 					style="background: var(--bs-teal)"
 					>Sign Up</a
+				></span
+			>
+			<span *ngIf="active" class="navbar-text actions">
+				<a
+					class="btn btn-light action-button"
+					role="button"
+					routerLink="/users"
+					>Profile</a
 				></span
 			>
 		</div>
@@ -54,7 +62,7 @@
 					style="color: var(--bs-info)"></i>
 				<h3 class="name" style="color: var(--bs-gray-100)">Regular User</h3>
 				<p class="description">
-					Pay for trips by distance at a rate of JMD$400.00/10km and enjoy
+					Pay for trips by distance at a rate of JMD$750.00/10km and enjoy
 					A/C cooling
 				</p>
 			</div>
@@ -67,7 +75,7 @@
 				</h3>
 				<p class="description">
 					Get 37.5% off on your trip when visiting a hot-spot (promotion)
-					with Quaco Membership at a rate of JMD$450.00/mo
+					with Quaco Membership at a rate of JMD$1000.00/mo
 				</p>
 			</div>
 			<div class="col-sm-6 col-md-4 item">
@@ -80,7 +88,7 @@
 				<p class="description">
 					Go first when drivers are looking for charters to take for just
 					JMD$750.00/mo for Tier1 and additional JMD$250.00/mo for
-					additional tiers
+					additional tiers (availability depends on user statistics)
 				</p>
 			</div>
 		</div>

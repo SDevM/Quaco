@@ -1,10 +1,4 @@
-import {
-	AfterViewInit,
-	Component,
-	ElementRef,
-	OnInit,
-	ViewChild,
-} from '@angular/core'
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core'
 import { Router } from '@angular/router'
 import { User } from 'src/app/interfaces/users.interface'
 import { UsersService } from 'src/app/services/users.service'
@@ -17,7 +11,8 @@ import { UsersService } from 'src/app/services/users.service'
 export class ProfileComponent implements AfterViewInit {
 	user!: User
 	map!: google.maps.Map
-	@ViewChild('map') viewMap!: ElementRef<HTMLDivElement>
+	@ViewChild('map') viewMap!: ElementRef<HTMLElement>
+	@ViewChild('avatar') avatar!: ElementRef<HTMLImageElement>
 	constructor(private userService: UsersService, private router: Router) {}
 
 	ngAfterViewInit(): void {
@@ -43,6 +38,8 @@ export class ProfileComponent implements AfterViewInit {
 		this.userService.checkIn().subscribe({
 			next: (data) => {
 				this.user = data
+				let url = window.webkitURL.createObjectURL(data.profile_pic!)
+				this.avatar.nativeElement.style.background = `url(${url})`
 			},
 			error: (err) => {
 				alert(err.message)

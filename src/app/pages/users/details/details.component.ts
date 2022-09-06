@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { UsersService } from 'src/app/services/users.service'
 
 @Component({
 	selector: 'app-details',
@@ -6,9 +8,13 @@ import { Component, OnInit } from '@angular/core'
 	styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent implements OnInit {
-	constructor() {}
+	constructor(private userService: UsersService, private router: Router) {}
 
 	ngOnInit(): void {}
 
-	logout() {}
+	logout() {
+		this.userService.signOut().subscribe(() => {
+			this.router.navigate(['/home'])
+		})
+	}
 }

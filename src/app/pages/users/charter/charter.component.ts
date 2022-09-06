@@ -6,6 +6,10 @@ import {
 	OnInit,
 	ViewChild,
 } from '@angular/core'
+import { NgForm } from '@angular/forms'
+import { Router } from '@angular/router'
+import { ChartersService } from 'src/app/services/charters.service'
+import { UsersService } from 'src/app/services/users.service'
 
 @Component({
 	selector: 'app-charter',
@@ -13,10 +17,12 @@ import {
 	styleUrls: ['./charter.component.scss'],
 })
 export class CharterComponent implements OnInit, AfterViewInit {
+	@ViewChild('form') form!: NgForm
 	@ViewChild('map') mapDiv!: ElementRef<HTMLDivElement>
 	@ViewChild('start') start!: ElementRef<HTMLInputElement>
 	@ViewChild('end') end!: ElementRef<HTMLInputElement>
 
+	stage = 0
 	map!: google.maps.Map
 	markerA = new google.maps.Marker()
 	markerB = new google.maps.Marker({
@@ -24,9 +30,16 @@ export class CharterComponent implements OnInit, AfterViewInit {
 		label: 'D',
 		animation: google.maps.Animation.DROP,
 	})
+	curdir!: google.maps.DirectionsLeg
+	charter: any = {}
 	onChangeHandler!: (originQuery: string, destinationQuery: string) => void
 
-	constructor(private ngZone: NgZone) {}
+	constructor(
+		private ngZone: NgZone,
+		public uService: UsersService,
+		private cService: ChartersService,
+		private router: Router
+	) {}
 
 	ngAfterViewInit(): void {
 		// Initialize the map using the div element and these options
@@ -57,7 +70,7 @@ export class CharterComponent implements OnInit, AfterViewInit {
 		// Set places options, such as resticting it to jamaica
 		const options = {
 			componentRestrictions: { country: 'jm' },
-			fields: ['address_components', 'geometry', 'icon', 'name'],
+			fields: ['formatted_address', 'geometry', 'icon', 'name'],
 			strictBounds: false,
 		}
 
@@ -152,6 +165,7 @@ export class CharterComponent implements OnInit, AfterViewInit {
 			})
 			.then((response) => {
 				// Use directions response to set the direction values in the directions renderer
+				this.curdir = response.routes[0].legs[0]
 				directionsRenderer.setDirections(response)
 				directionsRenderer.setOptions({ suppressMarkers: true })
 				// Establish markers at point A and B
@@ -177,5 +191,21 @@ export class CharterComponent implements OnInit, AfterViewInit {
 
 	ngOnInit(): void {}
 
-	logout() {}
+	submit() {
+		this.cService.placeCharter(this.charter).subscribe({
+			next: (data) => {
+				this.router.navigate(['/users'])
+				//Success message
+			},
+			error: (err) => {
+				//Error message
+			},
+		})
+	}
+
+	logout() {
+		this.uService.signOut().subscribe((data) => {
+			this.router.navigate(['/home'])
+		})
+	}
 }

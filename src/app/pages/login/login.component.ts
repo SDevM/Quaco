@@ -15,8 +15,8 @@ export class LoginComponent implements OnInit {
 
 	submit() {
 		this.userService.signIn(this.user).subscribe({
-			next: (result) => {
-				if (result) this.router.navigate(['/users'])
+			next: () => {
+				this.router.navigate(['/users'])
 			},
 			error: (err) => {
 				alert(err.err.message)

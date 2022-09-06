@@ -2,7 +2,7 @@
 	style="
 		background: url('assets/img/pexels-suzukii-xingfu-674665.jpg') center /
 			cover;
-		height: 800px;
+		height: 1000px;
 	">
 	<nav
 		class="navbar navbar-light navbar-expand-lg navigation-clean-button"
@@ -10,7 +10,7 @@
 		<div class="container">
 			<a
 				class="navbar-brand"
-				routerLink="/home"
+				href="#"
 				style="font-size: 30px; color: rgb(255, 255, 255)"
 				>QUACO</a
 			><button
@@ -23,21 +23,13 @@
 			<div class="collapse navbar-collapse" id="navcol-1">
 				<ul
 					class="navbar-nav me-auto"
-					style="background: rgba(33, 37, 41, 0.5)">
+					style="background: rgba(33, 37, 41, 0.6); border-radius: 5px">
 					<li class="nav-item">
 						<a
 							class="nav-link active"
-							routerLink="/prices"
+							routerLink="../"
 							style="color: var(--bs-white)"
-							>Pricing</a
-						>
-					</li>
-					<li class="nav-item">
-						<a
-							class="nav-link active"
-							routerLink="/services"
-							style="color: var(--bs-white)"
-							>Services</a
+							>Front Desk</a
 						>
 					</li>
 					<li class="nav-item">
@@ -59,17 +51,30 @@
 					<li class="nav-item">
 						<a
 							class="nav-link active"
-							routerLink="../"
+							routerLink="../history"
 							style="color: var(--bs-white)"
-							>Front Desk</a
+							>History</a
+						>
+					</li>
+					<li class="nav-item">
+						<a
+							class="nav-link active"
+							routerLink="/prices"
+							style="color: var(--bs-white)"
+							>Pricing</a
+						>
+					</li>
+					<li class="nav-item">
+						<a
+							class="nav-link active"
+							routerLink="/services"
+							style="color: var(--bs-white)"
+							>Services</a
 						>
 					</li>
 				</ul>
 				<span class="navbar-text actions">
-					<a
-						class="btn btn-light action-button"
-						role="button"
-						(click)="logout()"
+					<a class="btn btn-light action-button" role="button" (click)="logout()"
 						>Sign Out</a
 					></span
 				>
@@ -77,57 +82,143 @@
 		</div>
 	</nav>
 	<form
-		class="d-flex"
+		#form="ngForm"
 		style="
 			margin: 95px;
-			padding: 12px;
+			height: fit-content;
 			background: RGB(30, 40, 51);
 			color: rgb(255, 255, 255);
-			height: 500px;
 		">
-		<div class="container d-flex flex-column justify-content-between">
-			<label class="form-label text-uppercase"
-				>Leaving<i class="fa fa-map-marker" style="margin-left: 12px"></i
-				><input #start class="form-control" type="text" /></label
-			><label class="form-label text-uppercase"
-				>Arriving<i class="fa fa-map-marker" style="margin-left: 12px"></i
-				><input #end class="form-control" type="text" /></label
-			><label class="form-label text-uppercase"
-				>Language<i class="fa fa-comment-o" style="margin-left: 12px"></i
-				><select class="form-select" required="">
-					<optgroup label="This is a group">
-						<option value="" selected="">Select A Language</option>
-						<option value="english">English</option>
-						<option value="spanish">Spanish</option>
-						<option value="french">French</option>
-					</optgroup>
-				</select></label
-			><label class="form-label text-uppercase"
-				>Music choice<i class="fa fa-music" style="margin-left: 12px"></i
-				><select class="form-select" required="">
-					<optgroup label="This is a group">
-						<option value="" selected="">Select A Language</option>
-						<option value="english">English</option>
-						<option value="spanish">Spanish</option>
-						<option value="french">French</option>
-					</optgroup>
-				</select></label
-			><label class="form-label text-uppercase"
-				>APPOINTMENT<i class="fa fa-clock-o" style="margin-left: 12px"></i
-				><input class="form-control" type="datetime-local" /></label
-			><button class="btn btn-primary" type="button">
-				Book your Charter
-			</button>
+		<h1 class="display-2 text-center flex-grow-1">Checkout</h1>
+		<div *ngIf="stage == 0" class="d-flex" style="padding: 32px">
+			<div class="container d-flex flex-column justify-content-between">
+				<label class="form-label text-uppercase"
+					>Leaving<i class="fa fa-map-marker" style="margin-left: 12px"></i
+					><input
+						#start
+						class="form-control"
+						type="text"
+						name="leaving"
+						[(ngModel)]="charter.leaving"
+						required="" /></label
+				><label class="form-label text-uppercase"
+					>Arriving<i
+						class="fa fa-map-marker"
+						style="margin-left: 12px"></i
+					><input
+						#end
+						class="form-control"
+						type="text"
+						name="arriving"
+						[(ngModel)]="charter.arriving"
+						required="" /></label
+				><label class="form-label text-uppercase"
+					>Language<i class="fa fa-comment-o" style="margin-left: 12px"></i
+					><select
+						class="form-select"
+						name="language"
+						[(ngModel)]="charter.langauge">
+						<option [value]="" selected="">Select A Language</option>
+						<option
+							*ngFor="let lang of uService.languages"
+							[value]="lang._id">
+							{{ lang.language }}
+						</option>
+					</select></label
+				><label class="form-label text-uppercase"
+					>Music choice<i class="fa fa-music" style="margin-left: 12px"></i
+					><select
+						class="form-select"
+						name="music"
+						[(ngModel)]="charter.music">
+						<option [value]="" selected="">Select Music</option>
+						<option
+							*ngFor="let music of uService.music"
+							[value]="music._id">
+							{{ music.music }}
+						</option>
+					</select></label
+				><label class="form-label text-uppercase"
+					>APPOINTMENT<i
+						class="fa fa-clock-o"
+						style="margin-left: 12px"></i
+					><input
+						class="form-control"
+						type="datetime-local"
+						name="appointment"
+						[(ngModel)]="charter.appointment"
+						required="" /></label
+				><button
+					class="btn btn-primary"
+					type="button"
+					(click)="form.valid && (stage = 1)">
+					Book your Charter
+				</button>
+			</div>
+			<div class="container d-flex flex-column">
+				<div #map width="100%" height="400" style="height: 100%"></div>
+			</div>
 		</div>
-		<div class="container d-flex flex-column">
-			<div
-				#map
-				allowfullscreen=""
-				frameborder="0"
-				src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCkQUYuQUFKmTZqYVUxschvMaJ2JifDGys&amp;q=Kingston%2C+Jamaica&amp;zoom=15"
-				width="100%"
-				height="400"
-				style="height: 100%"></div>
+		<div *ngIf="stage == 1" class="d-flex" style="padding: 32px">
+			<div class="container p-0">
+				<div class="card px-4">
+					<p class="h8 py-3">Payment Details</p>
+					<div class="row gx-3">
+						<div class="col-12">
+							<div class="d-flex flex-column">
+								<p class="text mb-1">Person Name</p>
+								<input
+									class="form-control mb-3"
+									type="text"
+									name="cardholder"
+									placeholder="Name" />
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="d-flex flex-column">
+								<p class="text mb-1">Card Number</p>
+								<input
+									class="form-control mb-3"
+									type="text"
+									name="card_no"
+									placeholder="1234 5678 435678" />
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="d-flex flex-column">
+								<p class="text mb-1">Expiry</p>
+								<input
+									class="form-control mb-3"
+									type="text"
+									name="expiry"
+									placeholder="MM/YYYY" />
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="d-flex flex-column">
+								<p class="text mb-1">CVV/CVC</p>
+								<input
+									class="form-control mb-3 pt-2"
+									type="password"
+									name="cvv_cvc"
+									placeholder="***" />
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="btn btn-primary mb-3" (click)="submit()">
+								<span class="ps-3"
+									>Pay
+									{{
+										((curdir.distance?.value ?? 0) / 10000) * 750
+											| currency
+									}}</span
+								>
+								<span class="fas fa-arrow-right"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</form>
 </section>

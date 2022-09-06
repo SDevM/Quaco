@@ -1,6 +1,7 @@
 <nav class="navbar navbar-light navbar-expand-lg navigation-clean-button">
 	<div class="container">
-		<a class="navbar-brand" routerLink="/home" style="font-size: 30px">QUACO</a
+		<a class="navbar-brand" routerLink="/home" style="font-size: 30px"
+			>QUACO</a
 		><button
 			data-bs-toggle="collapse"
 			class="navbar-toggler"
@@ -20,7 +21,7 @@
 					<a class="nav-link active" href="#">Drive &amp; Earn</a>
 				</li>
 			</ul>
-			<span class="navbar-text actions">
+			<span *ngIf="!active" class="navbar-text actions">
 				<a class="login" routerLink="/login">Log In</a
 				><a
 					class="btn btn-light action-button"
@@ -28,6 +29,14 @@
 					routerLink="/signup"
 					style="background: var(--bs-teal)"
 					>Sign Up</a
+				></span
+			>
+			<span *ngIf="active" class="navbar-text actions">
+				<a
+					class="btn btn-light action-button"
+					role="button"
+					routerLink="/users"
+					>Profile</a
 				></span
 			>
 		</div>
@@ -38,8 +47,8 @@
 		<div class="intro">
 			<h1 class="display-2 text-center">Team</h1>
 			<p class="text-center">
-				Nunc luctus in metus eget fringilla. Aliquam sed justo ligula.
-				Vestibulum nibh erat, pellentesque ut laoreet.&nbsp;
+				The team that started it all, bringing a quality service to
+				Jamaica&nbsp;
 			</p>
 		</div>
 		<div class="row people">

@@ -1,17 +1,39 @@
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 import { environment } from 'src/environments/environment'
 import { GenericSubscribe } from '../interfaces/default'
 import { JSONResponse } from '../interfaces/json.interface'
-import { Title } from '../interfaces/titles.interface'
+import { Lang, Music, Title } from '../interfaces/accessories.interface'
 import { User } from '../interfaces/users.interface'
 
 @Injectable({
 	providedIn: 'root',
 })
 export class UsersService {
-	constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient) {
+		this.getTitles().subscribe((data) => {
+			this._titles = data
+		})
+		this.getMusic().subscribe((data) => {
+			this._music = data
+		})
+		this.getLangs().subscribe((data) => {
+			this._languages = data
+		})
+	}
+	private _titles: Title[] = []
+	public get titles(): Title[] {
+		return this._titles
+	}
+	private _music: Music[] = []
+	public get music(): Music[] {
+		return this._music
+	}
+	private _languages: Lang[] = []
+	public get languages(): Lang[] {
+		return this._languages
+	}
 
 	/**
 	 * Http request for creating a new user login
@@ -20,8 +42,13 @@ export class UsersService {
 	 */
 	signUp(user: User) {
 		let obs = new Observable<User>((observer) => {
+			let data = new FormData()
+			Object.keys(user).forEach((e) => {
+				if (e === 'profile_pic') data.append(e, user[e as keyof User]!)
+				else data.set(e, user[e as keyof User]!)
+			})
 			this.http
-				.post<JSONResponse<User>>(environment.apiUrl + '/users', user, {
+				.post<JSONResponse<User>>(environment.apiUrl + '/users', data, {
 					withCredentials: true,
 				})
 				.subscribe(GenericSubscribe(observer))
@@ -71,7 +98,9 @@ export class UsersService {
 				.post<JSONResponse<User>>(
 					environment.apiUrl + '/users/login',
 					user,
-					{ withCredentials: true }
+					{
+						withCredentials: true,
+					}
 				)
 				.subscribe(GenericSubscribe(observer))
 		})
@@ -120,6 +149,36 @@ export class UsersService {
 		let obs = new Observable<Title[]>((observer) => {
 			this.http
 				.get<JSONResponse<Title[]>>(environment.apiUrl + '/titles', {
+					withCredentials: true,
+				})
+				.subscribe(GenericSubscribe(observer))
+		})
+
+		return obs
+	}
+	/**
+	 * Http request for the list of availible titles
+	 * @returns Observable
+	 */
+	getMusic() {
+		let obs = new Observable<Music[]>((observer) => {
+			this.http
+				.get<JSONResponse<Music[]>>(environment.apiUrl + '/music', {
+					withCredentials: true,
+				})
+				.subscribe(GenericSubscribe(observer))
+		})
+
+		return obs
+	}
+	/**
+	 * Http request for the list of availible titles
+	 * @returns Observable
+	 */
+	getLangs() {
+		let obs = new Observable<Lang[]>((observer) => {
+			this.http
+				.get<JSONResponse<Lang[]>>(environment.apiUrl + '/languages', {
 					withCredentials: true,
 				})
 				.subscribe(GenericSubscribe(observer))

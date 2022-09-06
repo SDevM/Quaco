@@ -6,7 +6,6 @@ import {
 	ViewChild,
 } from '@angular/core'
 import { Router } from '@angular/router'
-import { Title } from 'src/app/interfaces/titles.interface'
 import { UsersService } from 'src/app/services/users.service'
 
 @Component({
@@ -17,38 +16,27 @@ import { UsersService } from 'src/app/services/users.service'
 export class SignupComponent implements OnInit, AfterViewInit {
 	@ViewChild('place') Place!: ElementRef<HTMLInputElement>
 
-	titles: Title[] = []
 	user: any = {}
-	constructor(private uService: UsersService, private router: Router) {}
+	constructor(public uService: UsersService, private router: Router) {}
 
 	ngAfterViewInit(): void {
 		let auto = new google.maps.places.Autocomplete(this.Place.nativeElement, {
 			componentRestrictions: { country: 'jm' },
-			fields: ['address_components', 'geometry', 'icon', 'name'],
+			fields: ['formatted_address', 'geometry', 'icon', 'name'],
 			strictBounds: false,
 		})
 
 		auto.addListener('place_changed', () => {
-			let location = auto.getPlace().geometry?.location
-			new google.maps.Geocoder()
-				.geocode({ location: location })
-				.then((resp) => {
-					this.user.address = resp.results[0].formatted_address
-				})
-				.catch(() => (this.user.address = ''))
+			this.user.address = auto.getPlace().formatted_address
 		})
 	}
 
-	ngOnInit(): void {
-		this.uService.getTitles().subscribe((data) => {
-			this.titles.push(...data)
-		})
-	}
+	ngOnInit(): void {}
 
 	submit() {
 		this.uService.signUp(this.user).subscribe({
 			next: (data) => {
-				this.router.navigate(['/users'])
+				this.router.navigate(['/login'])
 			},
 			error: (err) => {
 				alert(err.message)
@@ -58,6 +46,6 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
 	files(input: any) {
 		input = input as HTMLInputElement
-		this.user.files = input.files
+		this.user.profile_pic = input.files[0]
 	}
 }
