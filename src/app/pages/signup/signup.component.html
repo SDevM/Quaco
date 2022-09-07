@@ -11,7 +11,7 @@
 			<a class="navbar-brand" routerLink="/home" style="font-size: 30px"
 				>QUACO</a
 			>
-			<div class="collapse navbar-collapse" id="navcol-1"></div>
+			<div class="collapse navbar-collapse" [ngbCollapse]="collapse"></div>
 		</div>
 	</nav>
 	<form #form="ngForm" style="max-width: 400px">
@@ -26,8 +26,7 @@
 				type="text"
 				placeholder="Title"
 				name="title"
-				[(ngModel)]="user.title"
-				required="">
+				[(ngModel)]="user.title">
 				<option selected disabled [value]="undefined">
 					Select a Title
 				</option>
@@ -46,8 +45,7 @@
 				type="text"
 				placeholder="Name"
 				name="name"
-				[(ngModel)]="user.name"
-				required="" />
+				[(ngModel)]="user.name" />
 		</div>
 		<div class="mb-3">
 			<input
@@ -56,8 +54,7 @@
 				type="text"
 				placeholder="Username"
 				name="username"
-				[(ngModel)]="user.username"
-				required="" />
+				[(ngModel)]="user.username" />
 		</div>
 		<div class="mb-3">
 			<input
@@ -67,8 +64,7 @@
 				name="email"
 				placeholder="Email"
 				email=""
-				[(ngModel)]="user.email"
-				required="" />
+				[(ngModel)]="user.email" />
 		</div>
 		<div class="mb-3">
 			<input
@@ -88,27 +84,32 @@
 				type="password"
 				name="password"
 				placeholder="Password"
-				[(ngModel)]="user.password"
-				required="" />
+				[(ngModel)]="user.password" />
 		</div>
 		<div class="mb-3">
 			<input
 				required
 				class="form-control"
 				type="password"
-				name="password"
+				name="confirm_password"
+				ngModel
+				[ngStyle]="
+					form.form.controls['confirm_password']?.valid
+						? { color: 'inherit' }
+						: { color: 'red' }
+				"
 				placeholder="Re-Enter Password"
-				[pattern]="form.form.controls['password'].value"
-				[required]="" />
+				[pattern]="form.form.controls['password'].value" />
 		</div>
 		<div class="mb-3">
-			<label class="form-label" required
+			<label class="form-label"
 				>Profile Picture<input
 					class="form-control"
 					type="file"
 					name="files"
 					(change)="files($event.target)"
 					required
+					ngModel
 			/></label>
 		</div>
 		<div class="mb-3">
@@ -116,7 +117,7 @@
 				class="btn btn-primary d-block w-100"
 				type="submit"
 				style="background: var(--bs-success)"
-				(click)="form.valid && user.address && submit()">
+				(click)="submit(form)">
 				Sign up
 			</button>
 		</div>

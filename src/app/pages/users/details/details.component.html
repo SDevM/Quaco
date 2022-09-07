@@ -7,13 +7,13 @@
 			style="font-size: 30px; color: var(--bs-white)"
 			>QUACO</a
 		><button
-			data-bs-toggle="collapse"
 			class="navbar-toggler"
-			data-bs-target="#navcol-1">
+			(click)="collapse = !collapse"
+			(show)="collapse = true">
 			<span class="visually-hidden">Toggle navigation</span
 			><span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" id="navcol-1">
+		<div [ngbCollapse]="!collapse" class="navbar-collapse">
 			<ul class="navbar-nav me-auto">
 				<li class="nav-item" routerLink="../">
 					<a class="nav-link active">Front Desk</a>
@@ -48,37 +48,31 @@
 </nav>
 <div class="container hero" style="margin: 40px auto">
 	<div class="row row-cols-2">
-		<div class="col-6 col-lg-6 col-xl-5 offset-xl-1 d-flex flex-column">
-			<h1 style="margin: 24px 0px">Personal Details</h1>
-			<span style="color: var(--bs-gray); font-size: 24px">Username</span
-			><input type="text" [(ngModel)]="user.email" /><span
-				style="color: var(--bs-gray); font-size: 24px"
-				>Email</span
-			><input type="email" /><span
-				style="color: var(--bs-gray); font-size: 24px"
-				>Address</span
-			><textarea></textarea
-			><span style="color: var(--bs-gray); font-size: 24px">Music</span
-			><select class="form-select-lg">
-				<optgroup label="This is a group">
-					<option value="12" selected="">This is item 1</option>
-					<option value="13">This is item 2</option>
-					<option value="14">This is item 3</option>
-				</optgroup></select
-			><span style="color: var(--bs-gray); font-size: 24px">Language</span
-			><select class="form-select-lg">
-				<optgroup label="This is a group">
-					<option value="12" selected="">This is item 1</option>
-					<option value="13">This is item 2</option>
-					<option value="14">This is item 3</option>
-				</optgroup></select
-			><button
-				class="btn btn-primary"
-				type="button"
-				style="margin: 24px 0px; background: var(--bs-teal)">
-				Update
-			</button>
-		</div>
+		<form #form="ngForm">
+			<div class="col-6 col-lg-6 col-xl-5 offset-xl-1 d-flex flex-column">
+				<h1 style="margin: 24px 0px">Personal Details</h1>
+				<span style="color: var(--bs-gray); font-size: 24px">Title</span
+				><input type="text" /><span
+					style="color: var(--bs-gray); font-size: 24px"
+					>Name</span
+				><input type="text" /><span
+					style="color: var(--bs-gray); font-size: 24px"
+					>Username</span
+				><input type="text" /><span
+					style="color: var(--bs-gray); font-size: 24px"
+					>Email</span
+				><input type="email" /><span
+					style="color: var(--bs-gray); font-size: 24px"
+					>Primary Address</span
+				><textarea></textarea
+				><button
+					class="btn btn-primary"
+					type="button"
+					style="margin: 24px 0px; background: var(--bs-teal)">
+					Update
+				</button>
+			</div>
+		</form>
 		<div class="col-6">
 			<img
 				class="img-fluid"

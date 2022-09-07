@@ -8,6 +8,7 @@ import { HistoryComponent } from './history/history.component'
 import { CharterComponent } from './charter/charter.component'
 import { GoogleMapsModule } from '@angular/google-maps'
 import { FormsModule } from '@angular/forms'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
 	declarations: [
@@ -17,6 +18,6 @@ import { FormsModule } from '@angular/forms'
 		HistoryComponent,
 		CharterComponent,
 	],
-	imports: [CommonModule, UsersRoutingModule, GoogleMapsModule, FormsModule],
+	imports: [CommonModule, UsersRoutingModule, GoogleMapsModule, FormsModule, NgbModule],
 })
 export class UsersModule {}

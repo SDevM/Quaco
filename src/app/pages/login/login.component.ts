@@ -9,6 +9,7 @@ import { UsersService } from 'src/app/services/users.service'
 })
 export class LoginComponent implements OnInit {
 	user: any = {}
+	collapse = false
 	constructor(private userService: UsersService, private router: Router) {}
 
 	ngOnInit(): void {}
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
 				this.router.navigate(['/users'])
 			},
 			error: (err) => {
-				alert(err.err.message)
+				alert(err.message)
 			},
 		})
 	}

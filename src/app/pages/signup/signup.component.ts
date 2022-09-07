@@ -5,6 +5,7 @@ import {
 	OnInit,
 	ViewChild,
 } from '@angular/core'
+import { NgForm } from '@angular/forms'
 import { Router } from '@angular/router'
 import { UsersService } from 'src/app/services/users.service'
 
@@ -17,6 +18,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
 	@ViewChild('place') Place!: ElementRef<HTMLInputElement>
 
 	user: any = {}
+	collapse = false
 	constructor(public uService: UsersService, private router: Router) {}
 
 	ngAfterViewInit(): void {
@@ -33,7 +35,14 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
 	ngOnInit(): void {}
 
-	submit() {
+	submit(form: NgForm) {
+		if (form.invalid) {
+			alert('Please fill all fields appropriately')
+			return
+		} else if (!this.user.address) {
+			alert('Please select a valid address from the suggestions list')
+			return
+		}
 		this.uService.signUp(this.user).subscribe({
 			next: (data) => {
 				this.router.navigate(['/login'])

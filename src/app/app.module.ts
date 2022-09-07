@@ -14,6 +14,8 @@ import { SignupComponent } from './pages/signup/signup.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { FormsModule } from '@angular/forms'
 import { GoogleMapsModule } from '@angular/google-maps'
+import { MustExistDirective } from './directives/must-exist.directive';
+import { MustBeDirective } from './directives/must-be.directive'
 
 @NgModule({
 	declarations: [
@@ -24,9 +26,18 @@ import { GoogleMapsModule } from '@angular/google-maps'
 		PricingComponent,
 		TeamComponent,
 		LoginComponent,
-		SignupComponent
+		SignupComponent,
+		MustExistDirective,
+  MustBeDirective,
 	],
-	imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule, FormsModule, GoogleMapsModule],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		HttpClientModule,
+		NgbModule,
+		FormsModule,
+		GoogleMapsModule,
+	],
 	providers: [],
 	bootstrap: [AppComponent],
 })

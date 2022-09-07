@@ -8,6 +8,7 @@ import { UsersService } from 'src/app/services/users.service'
 	styleUrls: ['./wallet.component.scss'],
 })
 export class WalletComponent implements OnInit {
+	collapse = false
 	constructor(private userService: UsersService, private router: Router) {}
 
 	ngOnInit(): void {}

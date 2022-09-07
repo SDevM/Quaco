@@ -8,6 +8,7 @@ import { UsersService } from 'src/app/services/users.service'
 })
 export class ServicesComponent implements OnInit {
 	active: boolean
+	collapse = false
 	constructor(private uService: UsersService) {
 		uService.checkIn().subscribe({
 			next: (data) => {

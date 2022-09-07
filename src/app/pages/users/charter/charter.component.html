@@ -20,7 +20,7 @@
 				<span class="visually-hidden">Toggle navigation</span
 				><span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navcol-1">
+			<div class="collapse navbar-collapse" [ngbCollapse]="collapse">
 				<ul
 					class="navbar-nav me-auto"
 					style="background: rgba(33, 37, 41, 0.6); border-radius: 5px">
@@ -85,6 +85,7 @@
 		</div>
 	</nav>
 	<form
+		autocomplete="off"
 		#form="ngForm"
 		style="
 			margin: 95px;
@@ -99,10 +100,10 @@
 					>Leaving<i class="fa fa-map-marker" style="margin-left: 12px"></i
 					><input
 						#start
-						autocomplete="off"
 						class="form-control"
 						type="text"
-						name="leaving"
+						name="leave"
+						autocomplete="off"
 						[(ngModel)]="charter.leaving"
 						required="" /></label
 				><label class="form-label text-uppercase"
@@ -111,10 +112,10 @@
 						style="margin-left: 12px"></i
 					><input
 						#end
-						autocomplete="off"
 						class="form-control"
 						type="text"
-						name="arriving"
+						name="arrive"
+						autocomplete="off"
 						[(ngModel)]="charter.arriving"
 						required="" /></label
 				><label class="form-label text-uppercase"

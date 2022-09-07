@@ -12,6 +12,7 @@ export class ProfileComponent implements AfterViewInit {
 	user!: User
 	map!: google.maps.Map
 	avatar_url!: string
+	collapse = false
 	@ViewChild('map') viewMap!: ElementRef<HTMLElement>
 	@ViewChild('avatar') avatar!: ElementRef<HTMLImageElement>
 	constructor(private userService: UsersService, private router: Router) {}

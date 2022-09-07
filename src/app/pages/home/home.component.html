@@ -15,14 +15,15 @@
 					border-color: var(--bs-red);
 				"
 				>QUACO</a
-			><button
-				data-bs-toggle="collapse"
-				data-bs-target="#navcol-2"
-				class="navbar-toggler">
+			>
+			<button
+				class="navbar-toggler"
+				(click)="collapse = !collapse"
+				(show)="collapse = true">
 				<span class="visually-hidden">Toggle navigation</span
 				><span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navcol-1">
+			<div class="collapse navbar-collapse" [ngbCollapse]="collapse">
 				<ul class="navbar-nav">
 					<li class="nav-item">
 						<a class="nav-link" routerLink="/services">Services</a>
@@ -36,12 +37,9 @@
 				</ul>
 			</div>
 			<div
-				class="collapse navbar-collapse text-start d-lg-flex justify-content-lg-end"
+				class="collapse navbar-collapse text-start d-flex justify-content-lg-end"
 				id="navcol-2"
 				style="text-align: left">
-				<ul class="navbar-nav">
-					<li class="nav-item"></li>
-				</ul>
 				<span *ngIf="!active" class="navbar-text actions">
 					<a class="login" routerLink="/login">Log In</a
 					><a

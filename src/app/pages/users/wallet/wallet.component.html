@@ -7,13 +7,13 @@
 			style="font-size: 30px; color: var(--bs-white)"
 			>QUACO</a
 		><button
-			data-bs-toggle="collapse"
 			class="navbar-toggler"
-			data-bs-target="#navcol-1">
+			(click)="collapse = !collapse"
+			(show)="collapse = true">
 			<span class="visually-hidden">Toggle navigation</span
 			><span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" id="navcol-1">
+		<div class="collapse navbar-collapse" [ngbCollapse]="collapse">
 			<ul class="navbar-nav me-auto">
 				<li class="nav-item" routerLink="../">
 					<a class="nav-link active">Front Desk</a>

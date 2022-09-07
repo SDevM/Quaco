@@ -32,6 +32,7 @@ export class CharterComponent implements OnInit, AfterViewInit {
 	})
 	curdir!: google.maps.DirectionsLeg
 	charter: any = {}
+	collapse = false
 	onChangeHandler!: (originQuery: string, destinationQuery: string) => void
 
 	constructor(

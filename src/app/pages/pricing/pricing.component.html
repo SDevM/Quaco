@@ -4,13 +4,13 @@
 	<div class="container">
 		<a class="navbar-brand" href="#" style="font-size: 30px">QUACO</a
 		><button
-			data-bs-toggle="collapse"
 			class="navbar-toggler"
-			data-bs-target="#navcol-1">
+			(click)="collapse = !collapse"
+			(show)="collapse = true">
 			<span class="visually-hidden">Toggle navigation</span
 			><span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" id="navcol-1">
+		<div class="collapse navbar-collapse" [ngbCollapse]="collapse">
 			<ul class="navbar-nav me-auto">
 				<li class="nav-item" routerLink="/services">
 					<a class="nav-link active">Services</a>
