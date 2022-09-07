@@ -11,10 +11,10 @@ import { UsersService } from 'src/app/services/users.service'
 export class DetailsComponent implements OnInit {
 	user!: User
 	collapse = false
-	constructor(private userService: UsersService, private router: Router) {}
+	constructor(public uService: UsersService, private router: Router) {}
 
 	ngOnInit(): void {
-		this.userService.checkIn().subscribe({
+		this.uService.checkIn().subscribe({
 			next: (data) => {
 				this.user = data
 			},
@@ -25,7 +25,7 @@ export class DetailsComponent implements OnInit {
 	}
 
 	logout() {
-		this.userService.signOut().subscribe(() => {
+		this.uService.signOut().subscribe(() => {
 			this.router.navigate(['/home'])
 		})
 	}

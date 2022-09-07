@@ -13,7 +13,7 @@ import { UsersService } from '../services/users.service'
 	providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-	constructor(private userService: UsersService, private router: Router) {}
+	constructor(private uService: UsersService, private router: Router) {}
 
 	canActivate(
 		route: ActivatedRouteSnapshot,
@@ -24,7 +24,7 @@ export class AuthGuard implements CanActivate {
 		| boolean
 		| UrlTree {
 		let obs = new Observable<boolean>((observer) => {
-			this.userService.checkIn().subscribe({
+			this.uService.checkIn().subscribe({
 				next: (data) => {
 					observer.next(true)
 					observer.complete()

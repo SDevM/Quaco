@@ -61,7 +61,7 @@
 				required
 				class="form-control"
 				type="email"
-				name="email"
+				name="contact"
 				placeholder="Email"
 				email=""
 				[(ngModel)]="user.email" />
@@ -72,7 +72,7 @@
 				autocomplete="off"
 				class="form-control"
 				type="text"
-				name="address"
+				name="_addr"
 				placeholder="Address"
 				[value]="user.address ?? ''"
 				required="" />
@@ -84,6 +84,7 @@
 				type="password"
 				name="password"
 				placeholder="Password"
+				pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])((?=.*[^\w\d\s:])|(?=.*[_]))([^\s])*$"
 				[(ngModel)]="user.password" />
 		</div>
 		<div class="mb-3">

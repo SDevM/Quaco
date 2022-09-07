@@ -8,12 +8,12 @@ import { UsersService } from 'src/app/services/users.service'
 	styleUrls: ['./history.component.scss'],
 })
 export class HistoryComponent implements OnInit {
-	constructor(private userService: UsersService, private router: Router) {}
+	constructor(private uService: UsersService, private router: Router) {}
 
 	ngOnInit(): void {}
 
 	logout() {
-		this.userService.signOut().subscribe(() => {
+		this.uService.signOut().subscribe(() => {
 			this.router.navigate(['/home'])
 		})
 	}

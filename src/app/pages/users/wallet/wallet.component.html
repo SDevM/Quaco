@@ -1,111 +1,147 @@
-<nav
-	class="navbar navbar-dark navbar-expand-lg bg-success navigation-clean-button">
-	<div class="container">
-		<a
-			class="navbar-brand"
-			href="#"
-			style="font-size: 30px; color: var(--bs-white)"
-			>QUACO</a
-		><button
-			class="navbar-toggler"
-			(click)="collapse = !collapse"
-			(show)="collapse = true">
-			<span class="visually-hidden">Toggle navigation</span
-			><span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" [ngbCollapse]="collapse">
-			<ul class="navbar-nav me-auto">
-				<li class="nav-item" routerLink="../">
-					<a class="nav-link active">Front Desk</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link active">Wallet</a>
-				</li>
-				<li class="nav-item" routerLink="../details">
-					<a class="nav-link active">Details</a>
-				</li>
-				<li class="nav-item" routerLink="../history">
-					<a class="nav-link active">History</a>
-				</li>
-				<li class="nav-item" routerLink="/prices">
-					<a class="nav-link active">Pricing</a>
-				</li>
-				<li class="nav-item" routerLink="/services">
-					<a class="nav-link active">Services</a>
-				</li>
-			</ul>
-			<span class="navbar-text actions">
-				<a
-					class="btn btn-light action-button"
-					role="button"
-					(click)="logout()"
-					style="background: var(--bs-teal)"
-					>Sign Out</a
-				></span
-			>
-		</div>
-	</div>
-</nav>
-<div class="container hero" style="margin: 40px auto">
-	<div class="row">
-		<div class="col-12 col-lg-6 col-xl-5 offset-xl-1">
-			<h1 style="margin: 24px 0px">Wallet</h1>
-			<figure
-				class="figure d-flex align-items-center"
-				style="
-					padding: 10px;
-					border-radius: 10px;
-					background: var(--bs-teal);
-					border-style: none;
-					border-color: var(--bs-blue);
-				">
-				<img
-					class="img-fluid figure-img"
-					src="assets/img/Mastercard-logo.svg.png"
-					width="128px"
-					style="margin-right: 20px" />
-				<figcaption class="figure-caption d-flex flex-column">
-					<span style="color: var(--bs-white)">Jon R. Buckle</span
-					><span style="color: var(--bs-gray-900)">12************67</span>
-				</figcaption>
-				<i
-					class="fa fa-remove align-self-start ms-auto"
-					style="font-size: 32px"></i>
-			</figure>
-			<figure
-				class="figure d-flex align-items-center"
-				style="
-					padding: 10px;
-					border-radius: 10px;
-					background: var(--bs-teal);
-					border-style: none;
-					border-color: var(--bs-blue);
-				">
-				<img
-					class="img-fluid figure-img"
-					src="assets/img/Mastercard-logo.svg.png"
-					width="128px"
-					style="margin-right: 20px" />
-				<figcaption class="figure-caption d-flex flex-column">
-					<span style="color: var(--bs-white)">Jon R. Buckle</span
-					><span style="color: var(--bs-gray-900)">12************67</span>
-				</figcaption>
-				<i
-					class="fa fa-remove align-self-start ms-auto"
-					style="font-size: 32px"></i>
-			</figure>
-			<button class="btn btn-light btn-lg action-button" type="button">
-				Add Card&nbsp;<i
-					class="fa fa-credit-card"
-					style="font-size: 32px"></i>
+<section
+	style="
+		background: linear-gradient(var(--bs-green) 50%, var(--bs-blue)),
+			var(--bs-success);
+	">
+	<nav
+		class="navbar navbar-dark navbar-expand-lg bg-success navigation-clean-button">
+		<div class="container">
+			<a
+				class="navbar-brand"
+				href="#"
+				style="font-size: 30px; color: var(--bs-white)"
+				>QUACO</a
+			><button
+				class="navbar-toggler"
+				(click)="collapse = !collapse"
+				(show)="collapse = true">
+				<span class="visually-hidden">Toggle navigation</span
+				><span class="navbar-toggler-icon"></span>
 			</button>
+			<div class="collapse navbar-collapse" [ngbCollapse]="collapse">
+				<ul class="navbar-nav me-auto">
+					<li class="nav-item" routerLink="../">
+						<a class="nav-link active">Front Desk</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active">Wallet</a>
+					</li>
+					<li class="nav-item" routerLink="../details">
+						<a class="nav-link active">Details</a>
+					</li>
+					<li class="nav-item" routerLink="../history">
+						<a class="nav-link active">History</a>
+					</li>
+					<li class="nav-item" routerLink="/prices">
+						<a class="nav-link active">Pricing</a>
+					</li>
+					<li class="nav-item" routerLink="/services">
+						<a class="nav-link active">Services</a>
+					</li>
+				</ul>
+				<span class="navbar-text actions">
+					<a
+						class="btn btn-light action-button"
+						role="button"
+						(click)="logout()"
+						style="background: var(--bs-teal)"
+						>Sign Out</a
+					></span
+				>
+			</div>
 		</div>
-		<div
-			class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder">
-			<img
-				class="device"
-				style="width: 100%"
-				src="assets/img/pexels-woodysmedia-4394799.jpg" />
+	</nav>
+	<div class="container hero" style="margin: 40px auto">
+		<div class="row">
+			<div class="col-12 col-lg-6 col-xl-5 offset-xl-1">
+				<h1 style="margin: 24px 0px">Wallet</h1>
+				<figure
+					*ngFor="let card of wallet"
+					class="figure d-flex align-items-center"
+					style="
+						padding: 10px;
+						border-radius: 10px;
+						background: var(--bs-teal);
+						border-style: none;
+						border-color: var(--bs-blue);
+					">
+					<img
+						class="img-fluid figure-img"
+						src="assets/img/Mastercard-logo.svg.png"
+						width="128px"
+						style="margin-right: 20px" />
+					<figcaption class="figure-caption d-flex flex-column">
+						<span style="color: var(--bs-white)">{{
+							card.cardholder
+						}}</span
+						><span style="color: var(--bs-gray-900)">{{
+							card.card_no
+						}}</span>
+					</figcaption>
+					<i
+						class="fa fa-remove align-self-start ms-auto click"
+						style="font-size: 32px"
+						(click)="remove(card._id!)"></i>
+				</figure>
+				<form #form="ngForm" class="d-flex" style="padding: 16px">
+					<div class="container p-0">
+						<div class="card px-4">
+							<p class="h8 py-3">Payment Details</p>
+							<div class="row gx-3">
+								<div class="col-12">
+									<div class="d-flex flex-column">
+										<p class="text mb-1">Person Name</p>
+										<input
+											class="form-control mb-3"
+											type="text"
+											name="cardholder"
+											placeholder="Name"
+											ngModel />
+									</div>
+								</div>
+								<div class="col-12">
+									<div class="d-flex flex-column">
+										<p class="text mb-1">Card Number</p>
+										<input
+											class="form-control mb-3"
+											type="text"
+											name="card_no"
+											placeholder="1234 5678 9101 1121"
+											ngModel />
+									</div>
+								</div>
+								<div class="col-6">
+									<div class="d-flex flex-column">
+										<p class="text mb-1">Expiry</p>
+										<input
+											class="form-control mb-3 pt-2"
+											type="text"
+											name="expiry"
+											placeholder="00/00"
+											pattern="^((1[0-2])|(0[0-9]))\/[\d]{2}$"
+											ngModel />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<button
+						class="btn btn-success btn-lg action-button"
+						type="button"
+						(click)="submit(form)">
+						Add Card&nbsp;<i
+							class="fa fa-credit-card"
+							style="font-size: 32px"></i>
+					</button>
+				</form>
+			</div>
+			<div
+				class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder">
+				<img
+					class="device"
+					style="width: 100%"
+					src="assets/img/pexels-woodysmedia-4394799.jpg" />
+			</div>
 		</div>
 	</div>
-</div>
+</section>

@@ -146,7 +146,7 @@ export class UsersService {
 	 * Http request for the list of availible titles
 	 * @returns Observable
 	 */
-	getTitles() {
+	private getTitles() {
 		let obs = new Observable<Title[]>((observer) => {
 			this.http
 				.get<JSONResponse<Title[]>>(environment.apiUrl + '/titles', {
@@ -161,7 +161,7 @@ export class UsersService {
 	 * Http request for the list of availible titles
 	 * @returns Observable
 	 */
-	getMusic() {
+	private getMusic() {
 		let obs = new Observable<Music[]>((observer) => {
 			this.http
 				.get<JSONResponse<Music[]>>(environment.apiUrl + '/music', {
@@ -176,7 +176,7 @@ export class UsersService {
 	 * Http request for the list of availible titles
 	 * @returns Observable
 	 */
-	getLangs() {
+	private getLangs() {
 		let obs = new Observable<Lang[]>((observer) => {
 			this.http
 				.get<JSONResponse<Lang[]>>(environment.apiUrl + '/languages', {

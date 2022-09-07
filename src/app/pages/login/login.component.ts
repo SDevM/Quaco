@@ -10,12 +10,12 @@ import { UsersService } from 'src/app/services/users.service'
 export class LoginComponent implements OnInit {
 	user: any = {}
 	collapse = false
-	constructor(private userService: UsersService, private router: Router) {}
+	constructor(private uService: UsersService, private router: Router) {}
 
 	ngOnInit(): void {}
 
 	submit() {
-		this.userService.signIn(this.user).subscribe({
+		this.uService.signIn(this.user).subscribe({
 			next: () => {
 				this.router.navigate(['/users'])
 			},

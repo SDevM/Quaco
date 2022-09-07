@@ -48,23 +48,37 @@
 </nav>
 <div class="container hero" style="margin: 40px auto">
 	<div class="row row-cols-2">
-		<form #form="ngForm">
-			<div class="col-6 col-lg-6 col-xl-5 offset-xl-1 d-flex flex-column">
+		<form #form="ngForm" class="col-6 col-lg-6 col-xl-5">
+			<div class="offset-xl-1 d-flex flex-column">
 				<h1 style="margin: 24px 0px">Personal Details</h1>
 				<span style="color: var(--bs-gray); font-size: 24px">Title</span
-				><input type="text" /><span
-					style="color: var(--bs-gray); font-size: 24px"
-					>Name</span
-				><input type="text" /><span
+				><select
+					required
+					class="form-control"
+					type="text"
+					placeholder="Title"
+					name="title"
+					[(ngModel)]="user.title">
+					<option
+						style="color: black"
+						*ngFor="let title of uService.titles"
+						[value]="title._id">
+						{{ title.title }}
+					</option></select
+				><span style="color: var(--bs-gray); font-size: 24px">Name</span
+				><input type="text" name="name" [(ngModel)]="user.name" /><span
 					style="color: var(--bs-gray); font-size: 24px"
 					>Username</span
-				><input type="text" /><span
+				><input
+					type="text"
+					name="username"
+					[(ngModel)]="user.username" /><span
 					style="color: var(--bs-gray); font-size: 24px"
 					>Email</span
-				><input type="email" /><span
+				><input type="email" name="contact" [(ngModel)]="user.email" /><span
 					style="color: var(--bs-gray); font-size: 24px"
 					>Primary Address</span
-				><textarea></textarea
+				><textarea name="_addr" [(ngModel)]="user.address"></textarea
 				><button
 					class="btn btn-primary"
 					type="button"

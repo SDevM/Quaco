@@ -15,7 +15,7 @@ export class ProfileComponent implements AfterViewInit {
 	collapse = false
 	@ViewChild('map') viewMap!: ElementRef<HTMLElement>
 	@ViewChild('avatar') avatar!: ElementRef<HTMLImageElement>
-	constructor(private userService: UsersService, private router: Router) {}
+	constructor(private uService: UsersService, private router: Router) {}
 
 	ngAfterViewInit(): void {
 		new google.maps.Geocoder()
@@ -43,7 +43,7 @@ export class ProfileComponent implements AfterViewInit {
 	}
 
 	ngOnInit(): void {
-		this.userService.checkIn().subscribe({
+		this.uService.checkIn().subscribe({
 			next: (data) => {
 				this.user = data
 				this.avatar_url = (this.user.profile_pic as any).link
@@ -55,7 +55,7 @@ export class ProfileComponent implements AfterViewInit {
 	}
 
 	logout() {
-		this.userService.signOut().subscribe(() => {
+		this.uService.signOut().subscribe(() => {
 			this.router.navigate(['/home'])
 		})
 	}
