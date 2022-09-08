@@ -24,6 +24,18 @@ export class DetailsComponent implements OnInit {
 		})
 	}
 
+	update() {
+		this.uService.updateUser(this.user).subscribe({
+			next: (data) => {
+				this.user = data
+				console.log(this.uService.titles.find((e) => e._id == data.title))
+			},
+			error: (err) => {
+				alert(err.message)
+			},
+		})
+	}
+
 	logout() {
 		this.uService.signOut().subscribe(() => {
 			this.router.navigate(['/home'])

@@ -16,7 +16,6 @@ import { UsersService } from 'src/app/services/users.service'
 })
 export class SignupComponent implements OnInit, AfterViewInit {
 	@ViewChild('place') Place!: ElementRef<HTMLInputElement>
-
 	user: any = {}
 	collapse = false
 	constructor(public uService: UsersService, private router: Router) {}

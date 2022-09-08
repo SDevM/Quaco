@@ -44,7 +44,8 @@ export class WalletComponent implements OnInit {
 		this.pService.deletePayments(id).subscribe({
 			next: () => {
 				this.wallet = this.wallet.filter((val) => {
-					val._id !== id
+					console.log(val._id, id)
+					return val._id !== id
 				})
 			},
 			error: (err) => {

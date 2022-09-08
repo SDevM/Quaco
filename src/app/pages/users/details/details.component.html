@@ -56,7 +56,6 @@
 					required
 					class="form-control"
 					type="text"
-					placeholder="Title"
 					name="title"
 					[(ngModel)]="user.title">
 					<option
@@ -82,7 +81,8 @@
 				><button
 					class="btn btn-primary"
 					type="button"
-					style="margin: 24px 0px; background: var(--bs-teal)">
+					style="margin: 24px 0px; background: var(--bs-teal)"
+					(click)="update()">
 					Update
 				</button>
 			</div>
