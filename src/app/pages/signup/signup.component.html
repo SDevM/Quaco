@@ -59,14 +59,20 @@
 				required="" />
 		</div>
 		<div class="mb-3">
-			<input
-				required
-				class="form-control"
-				type="password"
-				name="password"
-				placeholder="Password"
-				pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])((?=.*[^\w\d\s:])|(?=.*[_]))([^\s])*$"
-				[(ngModel)]="user.password" />
+			<label>
+				<input
+					required
+					class="form-control"
+					type="password"
+					name="password"
+					placeholder="Password"
+					pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])((?=.*[^\w\d\s:])|(?=.*[_]))([^\s])*$"
+					[(ngModel)]="user.password" />
+				<span style="color: lightgray; font-size: 15px"
+					>8-10 characters long and at least (1) Uppercase, Lowercase,
+					Number, Symbol</span
+				>
+			</label>
 		</div>
 		<div class="mb-3">
 			<input
