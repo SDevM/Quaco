@@ -4,7 +4,7 @@ import { Observable, take } from 'rxjs'
 import { environment } from 'src/environments/environment'
 import { GenericSubscribe } from '../interfaces/default'
 import { JSONResponse } from '../interfaces/json.interface'
-import { Lang, Music, Title } from '../interfaces/accessories.interface'
+import { Lang, Music } from '../interfaces/accessories.interface'
 import { User } from '../interfaces/users.interface'
 
 @Injectable({
@@ -12,11 +12,6 @@ import { User } from '../interfaces/users.interface'
 })
 export class UsersService {
 	constructor(private http: HttpClient) {
-		this.getTitles()
-			.pipe(take(1))
-			.subscribe((data) => {
-				this._titles = data
-			})
 		this.getMusic()
 			.pipe(take(1))
 			.subscribe((data) => {
@@ -27,10 +22,6 @@ export class UsersService {
 			.subscribe((data) => {
 				this._languages = data
 			})
-	}
-	private _titles: Title[] = []
-	public get titles(): Title[] {
-		return this._titles
 	}
 	private _music: Music[] = []
 	public get music(): Music[] {
@@ -154,22 +145,6 @@ export class UsersService {
 		return obs
 	}
 
-	/**
-	 * Http request for the list of availible titles
-	 * @returns Observable
-	 */
-	private getTitles() {
-		let obs = new Observable<Title[]>((observer) => {
-			this.http
-				.get<JSONResponse<Title[]>>(environment.apiUrl + '/titles', {
-					withCredentials: true,
-				})
-				.pipe(take(1))
-				.subscribe(GenericSubscribe(observer))
-		})
-
-		return obs
-	}
 	/**
 	 * Http request for the list of availible titles
 	 * @returns Observable

@@ -15,28 +15,9 @@
 		</div>
 	</nav>
 	<form #form="ngForm" style="max-width: 400px">
-		<h2 class="visually-hidden">Login Form</h2>
+		<h2 class="visually-hidden">Sign Up Form</h2>
 		<div class="illustration">
 			<i class="icon ion-key" style="color: var(--bs-success)"></i>
-		</div>
-		<div class="mb-3">
-			<select
-				required
-				class="form-control"
-				type="text"
-				placeholder="Title"
-				name="title"
-				[(ngModel)]="user.title">
-				<option selected disabled [value]="undefined">
-					Select a Title
-				</option>
-				<option
-					style="color: black"
-					*ngFor="let title of uService.titles"
-					[value]="title._id">
-					{{ title.title }}
-				</option>
-			</select>
 		</div>
 		<div class="mb-3">
 			<input

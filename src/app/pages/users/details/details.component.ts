@@ -35,9 +35,6 @@ export class DetailsComponent implements OnInit {
 			.subscribe({
 				next: (data) => {
 					this.user = data
-					console.log(
-						this.uService.titles.find((e) => e._id == data.title)
-					)
 				},
 				error: (err) => {
 					alert(err.message)
