@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 			.pipe(take(1))
 			.subscribe({
 				next: (data) => {
-					this.active = true
+					this.active = !!data
 				},
 			})
 		this.active = false
