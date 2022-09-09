@@ -159,7 +159,8 @@
 									class="form-control mb-3"
 									type="text"
 									name="cardholder"
-									placeholder="Name" />
+									placeholder="Name"
+									[(ngModel)]="payment.cardholder" />
 							</div>
 						</div>
 						<div class="col-12">
@@ -169,7 +170,8 @@
 									class="form-control mb-3"
 									type="text"
 									name="card_no"
-									placeholder="1234 5678 435678" />
+									placeholder="1234 5678 435678"
+									[(ngModel)]="payment.card_no" />
 							</div>
 						</div>
 						<div class="col-6">
@@ -179,7 +181,8 @@
 									class="form-control mb-3"
 									type="text"
 									name="expiry"
-									placeholder="MM/YYYY" />
+									placeholder="MM/YYYY"
+									[(ngModel)]="payment.expiry" />
 							</div>
 						</div>
 						<div class="col-6">
@@ -197,8 +200,12 @@
 								<span class="ps-3"
 									>Pay
 									{{
-										((curdir.distance?.value ?? 0) / 10000) * 750
-											| currency
+										((curdir.distance?.value ?? 0) / 10000) * 750 >
+										500
+											? ((curdir.distance?.value ?? 0) / 10000) *
+													750 >
+											  500
+											: (500 | currency)
 									}}</span
 								>
 								<span class="fas fa-arrow-right"></span>
@@ -206,6 +213,36 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div *ngIf="wallet.length > 0">
+				<figure
+					*ngFor="let card of wallet"
+					class="figure d-flex align-items-center"
+					style="
+						padding: 10px;
+						border-radius: 10px;
+						background: var(--bs-teal);
+						border-style: none;
+						border-color: var(--bs-blue);
+					">
+					<img
+						class="img-fluid figure-img"
+						src="assets/img/Mastercard-logo.svg.png"
+						width="128px"
+						style="margin-right: 20px" />
+					<figcaption class="figure-caption d-flex flex-column">
+						<span style="color: var(--bs-white)">{{
+							card.cardholder
+						}}</span
+						><span style="color: var(--bs-gray-900)">{{
+							card.card_no
+						}}</span>
+					</figcaption>
+					<i
+						class="fa fa-remove align-self-start ms-auto click"
+						style="font-size: 32px"
+						(click)="remove(card._id!)"></i>
+				</figure>
 			</div>
 		</div>
 	</form>

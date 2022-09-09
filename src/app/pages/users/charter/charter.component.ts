@@ -7,8 +7,10 @@ import {
 	ViewChild,
 } from '@angular/core'
 import { NgForm } from '@angular/forms'
-import { Router } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
+import { PaymentMethod } from 'src/app/interfaces/payment.interface'
 import { ChartersService } from 'src/app/services/charters.service'
+import { PaymentsService } from 'src/app/services/payments.service'
 import { UsersService } from 'src/app/services/users.service'
 
 @Component({
@@ -30,8 +32,14 @@ export class CharterComponent implements OnInit, AfterViewInit {
 		label: 'D',
 		animation: google.maps.Animation.DROP,
 	})
+	default: { lng: number; lat: number } = {
+		lng: -76.8019,
+		lat: 17.9962,
+	}
 	curdir!: google.maps.DirectionsLeg
 	charter: any = {}
+	payment: any = {}
+	wallet: PaymentMethod[] = []
 	collapse = false
 	onChangeHandler!: (originQuery: string, destinationQuery: string) => void
 
@@ -39,14 +47,43 @@ export class CharterComponent implements OnInit, AfterViewInit {
 		private ngZone: NgZone,
 		public uService: UsersService,
 		private cService: ChartersService,
-		private router: Router
-	) {}
+		private pService: PaymentsService,
+		private router: Router,
+		private activatedroute: ActivatedRoute
+	) {
+		this.activatedroute.params.subscribe({
+			next: (data) => {
+				this.default.lat = parseFloat(data['lat'] ?? this.default.lat)
+				this.default.lng = parseFloat(data['lng'] ?? this.default.lng)
+			},
+			error: (err) => {
+				console.error(err)
+			},
+		})
+	}
+
+	remove(id: string) {
+		this.pService.deletePayments(id).subscribe({
+			next: () => {
+				this.wallet = this.wallet.filter((val) => {
+					console.log(val._id, id)
+					return val._id !== id
+				})
+			},
+			error: (err) => {
+				alert(err.message ?? 'Fatal error')
+			},
+		})
+	}
 
 	ngAfterViewInit(): void {
 		// Initialize the map using the div element and these options
 		this.map = new google.maps.Map(this.mapDiv.nativeElement, {
 			zoom: 15,
-			center: { lng: -76.8019, lat: 17.9962 },
+			center: new google.maps.LatLng({
+				lat: this.default.lat,
+				lng: this.default.lng,
+			}),
 			gestureHandling: 'none',
 		})
 
@@ -191,7 +228,16 @@ export class CharterComponent implements OnInit, AfterViewInit {
 			.catch((e) => console.log(e))
 	}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.pService.getPayments().subscribe({
+			next: (data) => {
+				this.wallet = data
+			},
+			error: (err) => {
+				console.error(err)
+			},
+		})
+	}
 
 	submit() {
 		this.cService.placeCharter(this.charter).subscribe({

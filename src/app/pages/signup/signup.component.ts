@@ -35,7 +35,12 @@ export class SignupComponent implements OnInit, AfterViewInit {
 	ngOnInit(): void {}
 
 	submit(form: NgForm) {
-		if (form.invalid) {
+		if (form.form.controls['password'].invalid) {
+			alert(
+				'Password must be 8-16 characters long \n Password must contain at least 1 uppercase, lowercase, symbol and number'
+			)
+			return
+		} else if (form.invalid) {
 			alert('Please fill all fields appropriately')
 			return
 		} else if (!this.user.address) {

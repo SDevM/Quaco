@@ -10,8 +10,10 @@ const routes: Routes = [
 	{ path: 'profile', component: ProfileComponent },
 	{ path: 'wallet', component: WalletComponent },
 	{ path: 'charter', component: CharterComponent },
+	{ path: 'charter/:lat/:lng', component: CharterComponent },
 	{ path: 'details', component: DetailsComponent },
-	{ path: 'history', component: HistoryComponent },
+	// { path: 'history', component: HistoryComponent },
+	{ path: 'history', redirectTo: 'profile' },
 	{
 		path: '**',
 		redirectTo: 'profile',

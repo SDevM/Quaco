@@ -12,6 +12,7 @@ export class ProfileComponent implements AfterViewInit {
 	user!: User
 	map!: google.maps.Map
 	avatar_url!: string
+	location: any = {}
 	collapse = false
 	@ViewChild('map') viewMap!: ElementRef<HTMLElement>
 	@ViewChild('avatar') avatar!: ElementRef<HTMLImageElement>
@@ -22,6 +23,8 @@ export class ProfileComponent implements AfterViewInit {
 			.geocode({ address: this.user.address })
 			.then((resp) => {
 				// Initialize the map using the div element and these options
+				this.location.lat = resp.results[0].geometry.location.lat()
+				this.location.lng = resp.results[0].geometry.location.lng()
 				this.map = new google.maps.Map(this.viewMap.nativeElement, {
 					center: resp.results[0].geometry.location,
 					zoom: 16,
