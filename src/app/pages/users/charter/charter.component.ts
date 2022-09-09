@@ -47,6 +47,7 @@ export class CharterComponent implements OnInit, AfterViewInit {
 		this.map = new google.maps.Map(this.mapDiv.nativeElement, {
 			zoom: 15,
 			center: { lng: -76.8019, lat: 17.9962 },
+			gestureHandling: 'none',
 		})
 
 		// Directions objects needed to create and manage the directions object

@@ -24,8 +24,10 @@ export class ProfileComponent implements AfterViewInit {
 				// Initialize the map using the div element and these options
 				this.map = new google.maps.Map(this.viewMap.nativeElement, {
 					center: resp.results[0].geometry.location,
-					zoom: 15,
+					zoom: 16,
 					disableDefaultUI: true,
+					gestureHandling: 'none',
+					zoomControl: false,
 				})
 				new google.maps.Marker({
 					position: resp.results[0].geometry.location,

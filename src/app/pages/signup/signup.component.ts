@@ -44,6 +44,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
 		}
 		this.uService.signUp(this.user).subscribe({
 			next: (data) => {
+				alert('Please check your email for the verification link.')
 				this.router.navigate(['/login'])
 			},
 			error: (err) => {
