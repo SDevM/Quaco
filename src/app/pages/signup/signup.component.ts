@@ -7,6 +7,7 @@ import {
 } from '@angular/core'
 import { NgForm } from '@angular/forms'
 import { Router } from '@angular/router'
+import { take } from 'rxjs'
 import { UsersService } from 'src/app/services/users.service'
 
 @Component({
@@ -47,15 +48,18 @@ export class SignupComponent implements OnInit, AfterViewInit {
 			alert('Please select a valid address from the suggestions list')
 			return
 		}
-		this.uService.signUp(this.user).subscribe({
-			next: (data) => {
-				alert('Please check your email for the verification link.')
-				this.router.navigate(['/login'])
-			},
-			error: (err) => {
-				alert(err.message)
-			},
-		})
+		this.uService
+			.signUp(this.user)
+			.pipe(take(1))
+			.subscribe({
+				next: (data) => {
+					alert('Please check your email for the verification link.')
+					this.router.navigate(['/login'])
+				},
+				error: (err) => {
+					alert(err.message)
+				},
+			})
 	}
 
 	files(input: any) {

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Observable } from 'rxjs'
+import { Observable, take } from 'rxjs'
 import { environment } from 'src/environments/environment'
 import { GenericSubscribe } from '../interfaces/default'
 import { JSONResponse } from '../interfaces/json.interface'
@@ -27,6 +27,7 @@ export class PaymentsService {
 						withCredentials: true,
 					}
 				)
+				.pipe(take(1))
 				.subscribe(GenericSubscribe(observer))
 		})
 
@@ -46,6 +47,7 @@ export class PaymentsService {
 						withCredentials: true,
 					}
 				)
+				.pipe(take(1))
 				.subscribe(GenericSubscribe(observer))
 		})
 
@@ -62,6 +64,7 @@ export class PaymentsService {
 				.delete<JSONResponse<any>>(environment.apiUrl + `/payments/${id}`, {
 					withCredentials: true,
 				})
+				.pipe(take(1))
 				.subscribe(GenericSubscribe(observer))
 		})
 

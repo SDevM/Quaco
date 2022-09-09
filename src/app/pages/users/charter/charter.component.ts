@@ -8,6 +8,7 @@ import {
 } from '@angular/core'
 import { NgForm } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
+import { take } from 'rxjs'
 import { PaymentMethod } from 'src/app/interfaces/payment.interface'
 import { ChartersService } from 'src/app/services/charters.service'
 import { PaymentsService } from 'src/app/services/payments.service'
@@ -51,7 +52,7 @@ export class CharterComponent implements OnInit, AfterViewInit {
 		private router: Router,
 		private activatedroute: ActivatedRoute
 	) {
-		this.activatedroute.params.subscribe({
+		this.activatedroute.params.pipe(take(1)).subscribe({
 			next: (data) => {
 				this.default.lat = parseFloat(data['lat'] ?? this.default.lat)
 				this.default.lng = parseFloat(data['lng'] ?? this.default.lng)
@@ -63,17 +64,20 @@ export class CharterComponent implements OnInit, AfterViewInit {
 	}
 
 	remove(id: string) {
-		this.pService.deletePayments(id).subscribe({
-			next: () => {
-				this.wallet = this.wallet.filter((val) => {
-					console.log(val._id, id)
-					return val._id !== id
-				})
-			},
-			error: (err) => {
-				alert(err.message ?? 'Fatal error')
-			},
-		})
+		this.pService
+			.deletePayments(id)
+			.pipe(take(1))
+			.subscribe({
+				next: () => {
+					this.wallet = this.wallet.filter((val) => {
+						console.log(val._id, id)
+						return val._id !== id
+					})
+				},
+				error: (err) => {
+					alert(err.message ?? 'Fatal error')
+				},
+			})
 	}
 
 	ngAfterViewInit(): void {
@@ -229,31 +233,40 @@ export class CharterComponent implements OnInit, AfterViewInit {
 	}
 
 	ngOnInit(): void {
-		this.pService.getPayments().subscribe({
-			next: (data) => {
-				this.wallet = data
-			},
-			error: (err) => {
-				console.error(err)
-			},
-		})
+		this.pService
+			.getPayments()
+			.pipe(take(1))
+			.subscribe({
+				next: (data) => {
+					this.wallet = data
+				},
+				error: (err) => {
+					console.error(err)
+				},
+			})
 	}
 
 	submit() {
-		this.cService.placeCharter(this.charter).subscribe({
-			next: (data) => {
-				this.router.navigate(['/users'])
-				//Success message
-			},
-			error: (err) => {
-				//Error message
-			},
-		})
+		this.cService
+			.placeCharter(this.charter)
+			.pipe(take(1))
+			.subscribe({
+				next: (data) => {
+					this.router.navigate(['/users'])
+					//Success message
+				},
+				error: (err) => {
+					//Error message
+				},
+			})
 	}
 
 	logout() {
-		this.uService.signOut().subscribe((data) => {
-			this.router.navigate(['/home'])
-		})
+		this.uService
+			.signOut()
+			.pipe(take(1))
+			.subscribe((data) => {
+				this.router.navigate(['/home'])
+			})
 	}
 }

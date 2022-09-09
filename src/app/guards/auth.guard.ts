@@ -6,7 +6,7 @@ import {
 	RouterStateSnapshot,
 	UrlTree,
 } from '@angular/router'
-import { Observable } from 'rxjs'
+import { Observable, take } from 'rxjs'
 import { UsersService } from '../services/users.service'
 
 @Injectable({
@@ -24,17 +24,20 @@ export class AuthGuard implements CanActivate {
 		| boolean
 		| UrlTree {
 		let obs = new Observable<boolean>((observer) => {
-			this.uService.checkIn().subscribe({
-				next: (data) => {
-					observer.next(true)
-					observer.complete()
-				},
-				error: (err) => {
-					this.router.navigate(['/login'])
-					observer.next(false)
-					observer.complete()
-				},
-			})
+			this.uService
+				.checkIn()
+				.pipe(take(1))
+				.subscribe({
+					next: (data) => {
+						observer.next(true)
+						observer.complete()
+					},
+					error: (err) => {
+						this.router.navigate(['/login'])
+						observer.next(false)
+						observer.complete()
+					},
+				})
 		})
 
 		return obs

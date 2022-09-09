@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core'
 import { Router, RouterModule, Routes } from '@angular/router'
+import { take } from 'rxjs'
 import { AuthGuard } from './guards/auth.guard'
 import { HomeComponent } from './pages/home/home.component'
 import { LoginComponent } from './pages/login/login.component'
@@ -34,7 +35,7 @@ const routes: Routes = [
 })
 export class AppRoutingModule {
 	constructor(private router: Router) {
-		router.events.subscribe(() => {
+		router.events.pipe(take(1)).subscribe(() => {
 			window.scrollTo(0, 0)
 		})
 	}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
+import { take } from 'rxjs'
 import { UsersService } from 'src/app/services/users.service'
 
 @Component({
@@ -13,8 +14,11 @@ export class HistoryComponent implements OnInit {
 	ngOnInit(): void {}
 
 	logout() {
-		this.uService.signOut().subscribe(() => {
-			this.router.navigate(['/home'])
-		})
+		this.uService
+			.signOut()
+			.pipe(take(1))
+			.subscribe(() => {
+				this.router.navigate(['/home'])
+			})
 	}
 }

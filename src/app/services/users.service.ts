@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Observable } from 'rxjs'
+import { Observable, take } from 'rxjs'
 import { environment } from 'src/environments/environment'
 import { GenericSubscribe } from '../interfaces/default'
 import { JSONResponse } from '../interfaces/json.interface'
@@ -12,15 +12,21 @@ import { User } from '../interfaces/users.interface'
 })
 export class UsersService {
 	constructor(private http: HttpClient) {
-		this.getTitles().subscribe((data) => {
-			this._titles = data
-		})
-		this.getMusic().subscribe((data) => {
-			this._music = data
-		})
-		this.getLangs().subscribe((data) => {
-			this._languages = data
-		})
+		this.getTitles()
+			.pipe(take(1))
+			.subscribe((data) => {
+				this._titles = data
+			})
+		this.getMusic()
+			.pipe(take(1))
+			.subscribe((data) => {
+				this._music = data
+			})
+		this.getLangs()
+			.pipe(take(1))
+			.subscribe((data) => {
+				this._languages = data
+			})
 	}
 	private _titles: Title[] = []
 	public get titles(): Title[] {
@@ -52,6 +58,7 @@ export class UsersService {
 				.post<JSONResponse<User>>(environment.apiUrl + '/users', data, {
 					withCredentials: true,
 				})
+				.pipe(take(1))
 				.subscribe(GenericSubscribe(observer))
 		})
 		return obs
@@ -68,6 +75,7 @@ export class UsersService {
 				.patch<JSONResponse<User>>(environment.apiUrl + '/users', user, {
 					withCredentials: true,
 				})
+				.pipe(take(1))
 				.subscribe(GenericSubscribe(observer))
 		})
 		return obs
@@ -83,6 +91,7 @@ export class UsersService {
 				.delete<JSONResponse<User>>(environment.apiUrl + '/users', {
 					withCredentials: true,
 				})
+				.pipe(take(1))
 				.subscribe(GenericSubscribe(observer))
 		})
 		return obs
@@ -103,6 +112,7 @@ export class UsersService {
 						withCredentials: true,
 					}
 				)
+				.pipe(take(1))
 				.subscribe(GenericSubscribe(observer))
 		})
 
@@ -119,6 +129,7 @@ export class UsersService {
 				.get(environment.apiUrl + '/users', {
 					withCredentials: true,
 				})
+				.pipe(take(1))
 				.subscribe(GenericSubscribe(observer))
 		})
 
@@ -136,6 +147,7 @@ export class UsersService {
 					environment.apiUrl + '/users/logout',
 					{ withCredentials: true }
 				)
+				.pipe(take(1))
 				.subscribe(GenericSubscribe(observer))
 		})
 
@@ -152,6 +164,7 @@ export class UsersService {
 				.get<JSONResponse<Title[]>>(environment.apiUrl + '/titles', {
 					withCredentials: true,
 				})
+				.pipe(take(1))
 				.subscribe(GenericSubscribe(observer))
 		})
 
@@ -167,6 +180,7 @@ export class UsersService {
 				.get<JSONResponse<Music[]>>(environment.apiUrl + '/music', {
 					withCredentials: true,
 				})
+				.pipe(take(1))
 				.subscribe(GenericSubscribe(observer))
 		})
 
@@ -182,6 +196,7 @@ export class UsersService {
 				.get<JSONResponse<Lang[]>>(environment.apiUrl + '/languages', {
 					withCredentials: true,
 				})
+				.pipe(take(1))
 				.subscribe(GenericSubscribe(observer))
 		})
 

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Observable } from 'rxjs'
+import { Observable, take } from 'rxjs'
 import { environment } from 'src/environments/environment'
 import { Charter } from '../interfaces/charters.interface'
 import { GenericSubscribe } from '../interfaces/default'
@@ -27,6 +27,8 @@ export class ChartersService {
 						withCredentials: true,
 					}
 				)
+				.pipe(take(1))
+				.pipe(take(1))
 				.subscribe(GenericSubscribe(observer))
 		})
 
@@ -47,6 +49,7 @@ export class ChartersService {
 						withCredentials: true,
 					}
 				)
+				.pipe(take(1))
 				.subscribe(GenericSubscribe(observer))
 		})
 

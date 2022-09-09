@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core'
 import { Router } from '@angular/router'
+import { take } from 'rxjs'
 import { User } from 'src/app/interfaces/users.interface'
 import { UsersService } from 'src/app/services/users.service'
 
@@ -48,20 +49,26 @@ export class ProfileComponent implements AfterViewInit {
 	}
 
 	ngOnInit(): void {
-		this.uService.checkIn().subscribe({
-			next: (data) => {
-				this.user = data
-				this.avatar_url = (this.user.profile_pic as any).link
-			},
-			error: (err) => {
-				alert(err.message)
-			},
-		})
+		this.uService
+			.checkIn()
+			.pipe(take(1))
+			.subscribe({
+				next: (data) => {
+					this.user = data
+					this.avatar_url = (this.user.profile_pic as any).link
+				},
+				error: (err) => {
+					alert(err.message)
+				},
+			})
 	}
 
 	logout() {
-		this.uService.signOut().subscribe(() => {
-			this.router.navigate(['/home'])
-		})
+		this.uService
+			.signOut()
+			.pipe(take(1))
+			.subscribe(() => {
+				this.router.navigate(['/home'])
+			})
 	}
 }
