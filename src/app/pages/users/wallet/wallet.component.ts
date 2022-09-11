@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { NgForm } from '@angular/forms'
 import { Router } from '@angular/router'
 import { take } from 'rxjs'
@@ -40,6 +40,7 @@ export class WalletComponent implements OnInit {
 			.subscribe({
 				next: (data) => {
 					this.wallet.push(data)
+					form.reset()
 				},
 				error: (err) => {
 					alert(err.message ?? 'Fatal error')

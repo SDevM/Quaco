@@ -81,13 +81,23 @@ export class CharterComponent implements OnInit, AfterViewInit {
 	}
 
 	ngAfterViewInit(): void {
+		let firstplace = new google.maps.LatLng({
+			lat: this.default.lat,
+			lng: this.default.lng,
+		})
+		new google.maps.Geocoder()
+			.geocode({
+				location: firstplace,
+			})
+			.then((resp) => {
+				this.start.nativeElement.value =
+					resp.results[0].formatted_address
+			})
+			.catch()
 		// Initialize the map using the div element and these options
 		this.map = new google.maps.Map(this.mapDiv.nativeElement, {
 			zoom: 15,
-			center: new google.maps.LatLng({
-				lat: this.default.lat,
-				lng: this.default.lng,
-			}),
+			center: firstplace,
 			gestureHandling: 'none',
 		})
 
@@ -157,7 +167,8 @@ export class CharterComponent implements OnInit, AfterViewInit {
 			new google.maps.Geocoder()
 				.geocode({ location: latLng })
 				.then((resp) => {
-					this.end.nativeElement.value = resp.results[0].formatted_address
+					this.end.nativeElement.value =
+						resp.results[0].formatted_address
 					if (this.start.nativeElement.value !== '') {
 						this.calculateAndDisplayRoute(
 							directionsService,
