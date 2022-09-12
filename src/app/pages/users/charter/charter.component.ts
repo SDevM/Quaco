@@ -259,18 +259,19 @@ export class CharterComponent implements OnInit, AfterViewInit {
 	}
 
 	submit() {
-		this.cService
-			.placeCharter(this.charter)
-			.pipe(take(1))
-			.subscribe({
-				next: (data) => {
-					this.router.navigate(['/users'])
-					//Success message
-				},
-				error: (err) => {
-					//Error message
-				},
-			})
+		alert('Coming soon')
+		// this.cService
+		// 	.placeCharter(this.charter)
+		// 	.pipe(take(1))
+		// 	.subscribe({
+		// 		next: (data) => {
+		// 			this.router.navigate(['/users'])
+		// 			//Success message
+		// 		},
+		// 		error: (err) => {
+		// 			//Error message
+		// 		},
+		// 	})
 	}
 
 	logout() {

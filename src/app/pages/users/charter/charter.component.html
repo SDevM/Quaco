@@ -14,9 +14,9 @@
 				style="font-size: 30px; color: rgb(255, 255, 255)"
 				>QUACO</a
 			><button
-				data-bs-toggle="collapse"
 				class="navbar-toggler"
-				data-bs-target="#navcol-1">
+				(click)="collapse = !collapse"
+				(show)="collapse = true">
 				<span class="visually-hidden">Toggle navigation</span
 				><span class="navbar-toggler-icon"></span>
 			</button>
@@ -236,15 +236,15 @@
 								<span class="ps-3"
 									>Pay
 									{{
-										((curdir.distance?.value ?? 0) /
+										(((curdir.distance?.value ?? 0) /
 											10000) *
 											750 >
 										500
 											? ((curdir.distance?.value ?? 0) /
 													10000) *
-													750 >
 											  500
-											: (500 | currency)
+											: 500
+										) | currency
 									}}</span
 								>
 								<span class="fas fa-arrow-right"></span>
