@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
+import { Router, RouterModule, Routes } from '@angular/router'
+import { take } from 'rxjs'
 import { CharterComponent } from './charter/charter.component'
 import { DetailsComponent } from './details/details.component'
 import { HistoryComponent } from './history/history.component'
@@ -25,4 +26,10 @@ const routes: Routes = [
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule],
 })
-export class UsersRoutingModule {}
+export class UsersRoutingModule {
+	constructor(private router: Router) {
+		router.events.pipe(take(1)).subscribe(() => {
+			window.scrollTo(0, 0)
+		})
+	}
+}
