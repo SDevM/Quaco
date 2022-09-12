@@ -23,34 +23,49 @@
 			<div class="collapse navbar-collapse" [ngbCollapse]="collapse">
 				<ul
 					class="navbar-nav me-auto"
-					style="background: rgba(33, 37, 41, 0.6); border-radius: 5px">
+					style="
+						background: rgba(33, 37, 41, 0.6);
+						border-radius: 5px;
+					">
 					<li class="nav-item" routerLink="../">
-						<a class="nav-link active" style="color: var(--bs-white)"
+						<a
+							class="nav-link active"
+							style="color: var(--bs-white)"
 							>Front Desk</a
 						>
 					</li>
 					<li class="nav-item" routerLink="../wallet">
-						<a class="nav-link active" style="color: var(--bs-white)"
+						<a
+							class="nav-link active"
+							style="color: var(--bs-white)"
 							>Wallet</a
 						>
 					</li>
 					<li class="nav-item" routerLink="../details">
-						<a class="nav-link active" style="color: var(--bs-white)"
+						<a
+							class="nav-link active"
+							style="color: var(--bs-white)"
 							>Details</a
 						>
 					</li>
 					<li class="nav-item" routerLink="../history">
-						<a class="nav-link active" style="color: var(--bs-white)"
+						<a
+							class="nav-link active"
+							style="color: var(--bs-white)"
 							>History</a
 						>
 					</li>
 					<li class="nav-item" routerLink="/prices">
-						<a class="nav-link active" style="color: var(--bs-white)"
+						<a
+							class="nav-link active"
+							style="color: var(--bs-white)"
 							>Pricing</a
 						>
 					</li>
 					<li class="nav-item" routerLink="/services">
-						<a class="nav-link active" style="color: var(--bs-white)"
+						<a
+							class="nav-link active"
+							style="color: var(--bs-white)"
 							>Services</a
 						>
 					</li>
@@ -70,8 +85,9 @@
 		autocomplete="off"
 		#form="ngForm"
 		style="
-			margin: 95px;
+			margin: 95px auto;
 			height: fit-content;
+			width: fit-content;
 			background: RGB(30, 40, 51);
 			color: rgb(255, 255, 255);
 		">
@@ -79,7 +95,9 @@
 		<div *ngIf="stage == 0" class="d-flex" style="padding: 32px">
 			<div class="container d-flex flex-column justify-content-between">
 				<label class="form-label text-uppercase"
-					>Leaving<i class="fa fa-map-marker" style="margin-left: 12px"></i
+					>Leaving<i
+						class="fa fa-map-marker"
+						style="margin-left: 12px"></i
 					><input
 						#start
 						class="form-control"
@@ -101,12 +119,16 @@
 						[(ngModel)]="charter.arriving"
 						required="" /></label
 				><label class="form-label text-uppercase"
-					>Language<i class="fa fa-comment-o" style="margin-left: 12px"></i
+					>Language<i
+						class="fa fa-comment-o"
+						style="margin-left: 12px"></i
 					><select
 						class="form-select"
 						name="language"
 						[(ngModel)]="charter.langauge">
-						<option [value]="" selected="">Select A Language</option>
+						<option [value]="" selected="">
+							Select A Language
+						</option>
 						<option
 							*ngFor="let lang of uService.languages"
 							[value]="lang._id">
@@ -114,7 +136,9 @@
 						</option>
 					</select></label
 				><label class="form-label text-uppercase"
-					>Music choice<i class="fa fa-music" style="margin-left: 12px"></i
+					>Music choice<i
+						class="fa fa-music"
+						style="margin-left: 12px"></i
 					><select
 						class="form-select"
 						name="music"
@@ -147,8 +171,11 @@
 				<div #map width="100%" height="400" style="height: 100%"></div>
 			</div>
 		</div>
-		<div *ngIf="stage == 1" class="d-flex" style="padding: 32px">
-			<div class="container p-0">
+		<div
+			*ngIf="stage == 1"
+			class="d-flex justify-content-between"
+			style="padding: 32px">
+			<div class="mx-5">
 				<div class="card px-4">
 					<p class="h8 py-3">Payment Details</p>
 					<div class="row gx-3">
@@ -196,8 +223,10 @@
 							</div>
 						</div>
 						<div class="col-12">
-							<div class="btn btn-primary mb-3" (click)="submit()">
-								<span class="ps-3"
+							<div
+								class="btn btn-primary mb-3"
+								(click)="submit()">
+								<!-- <span class="ps-3"
 									>Pay
 									{{
 										((curdir.distance?.value ?? 0) / 10000) * 750 >
@@ -207,7 +236,7 @@
 											  500
 											: (500 | currency)
 									}}</span
-								>
+								> -->
 								<span class="fas fa-arrow-right"></span>
 							</div>
 						</div>
