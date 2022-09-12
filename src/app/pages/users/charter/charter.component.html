@@ -93,7 +93,9 @@
 		">
 		<h1 class="display-2 text-center flex-grow-1">Checkout</h1>
 		<div *ngIf="stage == 0" class="d-flex" style="padding: 32px">
-			<div class="container d-flex flex-column justify-content-between" style="width: 60vw">
+			<div
+				class="container d-flex flex-column justify-content-between"
+				style="width: 60vw">
 				<label class="form-label text-uppercase"
 					>Leaving<i
 						class="fa fa-map-marker"
@@ -163,7 +165,12 @@
 				><button
 					class="btn btn-primary"
 					type="button"
-					(click)="form.valid && (stage = 1)">
+					(click)="
+						form.controls['leave'].valid &&
+							form.controls['arrive'].valid &&
+							form.controls['appointment'].valid &&
+							(stage = 1)
+					">
 					Book your Charter
 				</button>
 			</div>
@@ -226,17 +233,20 @@
 							<div
 								class="btn btn-primary mb-3"
 								(click)="submit()">
-								<!-- <span class="ps-3"
+								<span class="ps-3"
 									>Pay
 									{{
-										((curdir.distance?.value ?? 0) / 10000) * 750 >
+										((curdir.distance?.value ?? 0) /
+											10000) *
+											750 >
 										500
-											? ((curdir.distance?.value ?? 0) / 10000) *
+											? ((curdir.distance?.value ?? 0) /
+													10000) *
 													750 >
 											  500
 											: (500 | currency)
 									}}</span
-								> -->
+								>
 								<span class="fas fa-arrow-right"></span>
 							</div>
 						</div>

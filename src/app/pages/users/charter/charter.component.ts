@@ -90,8 +90,7 @@ export class CharterComponent implements OnInit, AfterViewInit {
 				location: firstplace,
 			})
 			.then((resp) => {
-				this.start.nativeElement.value =
-					resp.results[0].formatted_address
+				this.charter.leaving = resp.results[0].formatted_address
 			})
 			.catch()
 		// Initialize the map using the div element and these options
@@ -139,6 +138,7 @@ export class CharterComponent implements OnInit, AfterViewInit {
 
 		// Listen for the event of the place being updated, and respond with update logic
 		autocompleteA.addListener('place_changed', () => {
+			this.charter.leaving = this.start.nativeElement.value
 			this.ngZone.run(() => {
 				if (this.end.nativeElement.value !== '') {
 					this.onChangeHandler(
@@ -150,6 +150,7 @@ export class CharterComponent implements OnInit, AfterViewInit {
 		})
 
 		autocompleteB.addListener('place_changed', () => {
+			this.charter.arriving = this.end.nativeElement.value
 			this.ngZone.run(() => {
 				if (this.start.nativeElement.value !== '') {
 					this.onChangeHandler(

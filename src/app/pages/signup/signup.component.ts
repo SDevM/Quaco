@@ -22,11 +22,14 @@ export class SignupComponent implements OnInit, AfterViewInit {
 	constructor(public uService: UsersService, private router: Router) {}
 
 	ngAfterViewInit(): void {
-		let auto = new google.maps.places.Autocomplete(this.Place.nativeElement, {
-			componentRestrictions: { country: 'jm' },
-			fields: ['formatted_address', 'geometry', 'icon', 'name'],
-			strictBounds: false,
-		})
+		let auto = new google.maps.places.Autocomplete(
+			this.Place.nativeElement,
+			{
+				componentRestrictions: { country: 'jm' },
+				fields: ['formatted_address', 'geometry', 'icon', 'name'],
+				strictBounds: false,
+			}
+		)
 
 		auto.addListener('place_changed', () => {
 			this.user.address = auto.getPlace().formatted_address
@@ -36,7 +39,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
 	ngOnInit(): void {}
 
 	submit(form: NgForm) {
-		if (form.form.controls['password'].invalid) {
+		if (form.controls['password'].invalid) {
 			alert(
 				'Password must be 8-16 characters long \n Password must contain at least 1 uppercase, lowercase, symbol and number'
 			)

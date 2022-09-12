@@ -11,7 +11,9 @@
 			<a class="navbar-brand" routerLink="/home" style="font-size: 30px"
 				>QUACO</a
 			>
-			<div class="collapse navbar-collapse" [ngbCollapse]="collapse"></div>
+			<div
+				class="collapse navbar-collapse"
+				[ngbCollapse]="collapse"></div>
 		</div>
 	</nav>
 	<form #form="ngForm" style="max-width: 400px">
@@ -82,12 +84,12 @@
 				name="confirm_password"
 				ngModel
 				[ngStyle]="
-					form.form.controls['confirm_password']?.valid
+					form.controls['confirm_password']?.valid
 						? { color: 'inherit' }
 						: { color: 'red' }
 				"
 				placeholder="Re-Enter Password"
-				[pattern]="form.form.controls['password'].value" />
+				[pattern]="form.controls['password'].value" />
 		</div>
 		<div class="mb-3">
 			<label class="form-label"
